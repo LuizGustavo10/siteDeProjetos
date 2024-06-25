@@ -5,7 +5,14 @@
   text-align: center;
   margin-bottom: 20px;
 }
-
+.hero-section {
+  position: relative;
+  z-index: 1;
+  pointer-events: none; /* Make this section pass-through for mouse events */
+}
+.hero-section * {
+  pointer-events: auto; /* Re-enable pointer events for the children */
+}
 
 /*
 
