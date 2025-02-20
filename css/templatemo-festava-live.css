@@ -971,6 +971,9 @@ strong {
 
   .navbar-expand-lg .navbar-nav {
     padding-bottom: 30px;
+    height: 10px !important;
+    padding-top: 0px !important;
+    margin-top: 0px !important;
   }
 
   .navbar-expand-lg .navbar-nav .nav-link {
