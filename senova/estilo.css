@@ -1,5 +1,16 @@
-.video {
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  
+  /* Estilo para esconder o modal inicialmente */
+  .hidden {
+    display: none;
+}
+.rounded{
+    border-radius: 40px !important;
+}
+
+video {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 20px; /* Arredondando as bordas */
+    display: block;
+    margin: 30px;
+
 }
