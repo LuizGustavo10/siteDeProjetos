@@ -12,5 +12,9 @@ video {
     border-radius: 20px; /* Arredondando as bordas */
     display: block;
     margin: 30px;
+    box-shadow: 4px 4px 100px 40px indigo;
+}
 
+.fundo {
+    box-shadow: 4px 4px 100px 10px indigo;
 }
