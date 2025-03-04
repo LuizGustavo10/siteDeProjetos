@@ -1,100 +1,234 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vídeo e Cards</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Tecnologias</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+     <!-- Slick CSS -->
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
+
 </head>
-<body>
-    <!-- Modal de Boas-Vindas -->
-    <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="welcomeModalLabel">Bem-vindo à Senova!</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Clique em "Continuar" para prosseguir.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="continueButton">Continuar</button>
-                </div>
-            </div>
+<body class="bg-gray-900 text-white">
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 class="text-2xl font-bold mb-4 text-white">Bem-vindo ao Projeto SeNova</h2>
+            <p class="text-gray-300 mb-4">Clique para avançar.</p>
+            <button id="allow-sound" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">
+                Avançar
+            </button>
         </div>
     </div>
 
-    <div class="container mt-4">
-        <!-- Vídeo -->
+    <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-600">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap text-white"> SeNova </span>
+            </a>
+
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                
+                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-400 rounded-lg md:hidden hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+                <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-700 rounded-lg bg-gray-800 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-gray-900">
+                    <li>
+                        <a href="prog.html" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-500"> Efeitos CSS e JS </a>
+                    </li>
+                    <li>
+                        <a href="ias.html" class="block py-2 px-3 text-white rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500"> APIS </a>
+                    </li>
+                    <li>
+                        <a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500"> utilidades </a>
+                    </li>
+                    <li>
+                        <a href="https://www.infonl.com.br" class="block py-2 px-3 text-white rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500"> sobre min </a>
+                    </li>
+                    <li>
+                        <button id="theme-toggle" class="block py-2 px-3 text-white rounded hover:bg-gray-700 md:hover:bg-transparent md:hover:text-blue-500">Mudar Tema</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="">
+
+  
+
+   
+    
+  
+
+
+    <div class="flex flex-col md:flex-row items-center justify-center mt-20 space-x-0 md:space-x-8 rtl:space-x-reverse">
         <div class="ratio ratio-16x9 video">
-            <video id="video" muted>
-                <source src="video.mp4" type="video/mp4">
+            <video id="video" muted playsinline>
+                <source src="video.mp4" type="video/mp4" class=" video">
                 Seu navegador não suporta vídeos.
             </video>
         </div>
+
+        <div class="text-center md:text-left mt-4 md:mt-0" style="max-width: 500px;">
+            <h1 class="text-4xl font-bold mb-4 m-5">Conheça a SeNova!</h1>
+            <p class="text-lg text-gray-300 m-5">A inteligência artificial do Senac Nova Londrina, criada para oferecer suporte sobre cursos, matrículas, planos de trabalho docente (PTD), metodologias ativas e outras informações pedagógicas.</p>
+        </div>
+
         
-        <!-- Cards -->
-        <div class="row mt-4">
-            <div class="col-md-3">
-                <div class="card" onclick="location.href='pagina1.html';" style="cursor: pointer;">
-                    <img src="img1.jpg" class="card-img-top" alt="Imagem 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Título 1</h5>
-                        <p class="card-text">Descrição breve do primeiro card.</p>
-                    </div>
+    </div>
+
+    <br><br><br><br>
+    <p class="text-lg text-gray-300 m-5">Clique em alguma das funções abaixo!</p>
+    
+    
+    <div class="carousel-container">
+        <div class="carousel">
+            <a href="https://chatgpt.com/">
+                <div class="slide">
+                    <img src="imagens/alunos.jpg" alt="Slide 1">
+                    <div class="description">SeNova Alunos</div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" onclick="location.href='pagina2.html';" style="cursor: pointer;">
-                    <img src="img2.jpg" class="card-img-top" alt="Imagem 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Título 2</h5>
-                        <p class="card-text">Descrição breve do segundo card.</p>
-                    </div>
+            </a>
+            <a href="https://chatgpt.com/">
+                <div class="slide">
+                    <img src="imagens/instrutores.jpg" alt="Slide 2">
+                    <div class="description">SeNova Instrutores</div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" onclick="location.href='pagina3.html';" style="cursor: pointer;">
-                    <img src="img3.jpg" class="card-img-top" alt="Imagem 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Título 3</h5>
-                        <p class="card-text">Descrição breve do terceiro card.</p>
-                    </div>
+            </a>
+            <a href="https://chatgpt.com/">
+                <div class="slide">
+                    <img src="imagens/games.jpg" alt="Slide 3">
+                    <div class="description">SeNova Games</div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card" onclick="location.href='pagina4.html';" style="cursor: pointer;">
-                    <img src="img4.jpg" class="card-img-top" alt="Imagem 4">
-                    <div class="card-body">
-                        <h5 class="card-title">Título 4</h5>
-                        <p class="card-text">Descrição breve do quarto card.</p>
-                    </div>
+            </a>
+            <a href="https://chatgpt.com/">
+                <div class="slide">
+                    <img src="imagens/futuro.jpg" alt="Slide 4">
+                    <div class="description">SeNova Futuro</div>
                 </div>
-            </div>
+            </a>
+            <a href="https://chatgpt.com/">
+                <div class="slide">
+                    <img src="imagens/emoções.jpg" alt="Slide 5">
+                    <div class="description">SeNova Emoções</div>
+                </div>
+            </a>
+          
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+   
+
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center py-4 mt-10">
+        <p class="text-sm">Site desenvolvido por <strong>Luiz Gustavo</strong></p>
+        <p class="text-sm"><a href="https://www.infonl.com.br" class="text-blue-400 hover:underline">www.infonl.com.br</a></p>
+
+        <br>
+        <p text-sm>Número de visitas:</p>
+        <div style="margin: auto !important; width: 100px;">
+            <div id="sfc1r5kc21wrh53cyz93aadg4um2fk8z2c3"></div>
+            <script type="text/javascript" src="https://counter6.optistats.ovh/private/counter.js?c=1r5kc21wrh53cyz93aadg4um2fk8z2c3&down=async" async></script>
+            <br><a href="https://www.webcontadores.com"></a><noscript><a href="https://www.webcontadores.com" title="contador de visita"><img src="https://counter6.optistats.ovh/private/webcontadores.php?c=1r5kc21wrh53cyz93aadg4um2fk8z2c3" border="0" title="contador de visita" alt="contador de visita"></a></noscript>
+
+        </div>
+    </footer>
+
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.babel.js" integrity="sha512-ZAvevQxALZBNwEI5fZU3eeyF/GkebNgShMzzHELv8zG/Jk19BlgdLhSl3N8VU11O8epHBrOizz64OFbYDGGlaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        // Exibe o modal de boas-vindas ao carregar a página
-        const welcomeModal = new bootstrap.Modal(document.getElementById('welcomeModal'), {
-            backdrop: 'static', // Impede que o modal seja fechado clicando fora dele
-            keyboard: false // Impede que o modal seja fechado com a tecla ESC
+        // Script para o modal e o vídeo
+        const modal = document.getElementById('modal');
+        const allowSoundButton = document.getElementById('allow-sound');
+        const video = document.getElementById('video');
+
+        // Mostra o modal quando a página é carregada
+        document.addEventListener('DOMContentLoaded', () => {
+            modal.classList.remove('hidden');
         });
-        welcomeModal.show();
 
-        // Obtém referências ao vídeo e ao botão "Continuar"
-        const video = document.getElementById("video");
-        const continueButton = document.getElementById("continueButton");
-
-        // Adiciona um evento de clique ao botão "Continuar"
-        continueButton.addEventListener("click", function() {
+        // Quando o botão é clicado, permite o som, inicia o vídeo e esconde o modal
+        allowSoundButton.addEventListener('click', () => {
             video.muted = false; // Ativa o som
             video.play(); // Inicia a reprodução do vídeo
-            welcomeModal.hide(); // Fecha o modal
+            modal.classList.add('hidden'); // Esconde o modal
+        });
+
+        // Script para alternar o tema
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
         });
     </script>
+
+    
+
+    <!-- <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        ScrollReveal().reveal('.fundo', {
+            duration: 1500,
+            origin: 'left',
+            distance: '100px',
+            delay: 0,
+            reset: false,
+            scale: 0.85,
+            rotate: { x: 0, y: 80, z: 0 }
+        });
+    </script> -->
+
+
+
+  <!-- jQuery e Slick JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+
+  <script>
+      $(document).ready(function(){
+          $('.carousel').slick({
+              dots: true,          // Adiciona os pontos de navegação
+              infinite: true,      // Loop infinito
+              speed: 500,          // Velocidade da transição
+              slidesToShow: 5,     // Exibe 3 slides ao mesmo tempo
+              slidesToScroll: 1,   // Rola 1 slide por vez
+              adaptiveHeight: true,
+              autoplay: true,      // Ativa o autoplay
+              autoplaySpeed: 2000, // Tempo entre os slides
+              responsive: [
+                  {
+                      breakpoint: 1000,
+                      settings: {
+                          slidesToShow: 2 // Mostra 2 slides em telas menores
+                      }
+                  },
+                  {
+                      breakpoint: 480,
+                      settings: {
+                          slidesToShow: 2 // Mostra 1 slide em telas pequenas
+                      }
+                  }
+              ]
+          });
+      });
+  </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-  /* Estilo para esconder o modal inicialmente */
-  .hidden {
+ /* Estilo para esconder o modal inicialmente */
+ .hidden {
     display: none;
 }
 .rounded{
@@ -7,10 +7,63 @@
 }
 
 video {
-    width: 100%;
+    text-align: center;
+    margin: auto;
+    width: 80%;
     max-width: 600px;
-    border-radius: 20px; /* Arredondando as bordas */
+    border-radius: 30px; /* Arredondando as bordas */
     display: block;
-    margin: 30px;
+    /* animation: animacao 4s alternate infinite; */
+    box-shadow: 4px 4px 100px 40px indigo;
+   
+}
 
+/* @keyframes animacao {
+    0% { box-shadow: 4px 4px 100px 40px indigo; }
+    100% { box-shadow: -8px -8px 100px 40px rgb(130, 0, 111); }
+    
+} */
+
+.fundo {
+    box-shadow: 4px 4px 100px 10px indigo;
+    border: 1px  solid rgb(0, 0, 0);
+}
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+.carousel {
+    width: 80%;
+    margin: 30px auto;
+}
+.slide {
+    background: #0b141c;  
+    padding-bottom: 20px;
+    border-radius: 30px; /* Arredondando as bordas */
+    text-align: center;
+    margin: 10px;
+    box-shadow: 1px 1px 20px rgba(76, 0, 130, 0.663);
+}
+.slide img {
+    width: 100%;
+    height: auto;
+    border-top-left-radius: 30px; /* Arredondando as bordas */
+    border-top-right-radius: 30px; /* Arredondando as bordas */
+}
+.description {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
 }
