@@ -10,7 +10,11 @@ video {
     text-align: center;
     margin: auto;
     width: 80%;
+    text-align: center;
+    margin: auto;
+    width: 80%;
     max-width: 600px;
+    border-radius: 30px; /* Arredondando as bordas */
     border-radius: 30px; /* Arredondando as bordas */
     display: block;
     /* animation: animacao 4s alternate infinite; */
