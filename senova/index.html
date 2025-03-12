@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tecnologias</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="./estilo.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-     <!-- Slick CSS -->
-     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
-     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
+    <!-- Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="./particles.css">
 
 </head>
 <body class="bg-gray-900 text-white">
+  
+
     <!-- Modal -->
     <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
         <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-sm w-full">
@@ -65,11 +68,11 @@
 
     <div class="">
 
-  
 
-   
+
+
     
-  
+
 
 
     <div class="flex flex-col md:flex-row items-center justify-center mt-20 space-x-0 md:space-x-8 rtl:space-x-reverse">
@@ -90,6 +93,7 @@
 
     <br><br><br><br>
     <p class="text-lg text-gray-300 m-5">Clique em alguma das funções abaixo!</p>
+
     
     
     <div class="carousel-container">
@@ -124,17 +128,17 @@
                     <div class="description">SeNova Emoções</div>
                 </div>
             </a>
-          
+        
         </div>
     </div>
 
 
-   
+
 
     </div>
 
     <footer class="bg-gray-800 text-white text-center py-4 mt-10">
-        <p class="text-sm">Site desenvolvido por <strong>Luiz Gustavo</strong></p>
+        <p class="text-sm">Projeto de <strong>Senac Nova Londrina</strong></p>
         <p class="text-sm"><a href="https://www.infonl.com.br" class="text-blue-400 hover:underline">www.infonl.com.br</a></p>
 
         <br>
@@ -146,6 +150,12 @@
 
         </div>
     </footer>
+
+
+
+    
+
+      <!-- particles.js container --> <div id="particles-js"></div> <!-- stats - count particles --> <div class="count-particles"> <span class="js-count-particles">--</span> </div> <!-- particles.js lib - https://github.com/VincentGarreau/particles.js --> <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib --> <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
 
 
 
@@ -198,37 +208,43 @@
 
 
 
-  <!-- jQuery e Slick JS -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+<!-- jQuery e Slick JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
 
-  <script>
-      $(document).ready(function(){
-          $('.carousel').slick({
-              dots: true,          // Adiciona os pontos de navegação
-              infinite: true,      // Loop infinito
-              speed: 500,          // Velocidade da transição
-              slidesToShow: 5,     // Exibe 3 slides ao mesmo tempo
-              slidesToScroll: 1,   // Rola 1 slide por vez
-              adaptiveHeight: true,
-              autoplay: true,      // Ativa o autoplay
-              autoplaySpeed: 2000, // Tempo entre os slides
-              responsive: [
-                  {
-                      breakpoint: 1000,
-                      settings: {
-                          slidesToShow: 2 // Mostra 2 slides em telas menores
-                      }
-                  },
-                  {
-                      breakpoint: 480,
-                      settings: {
-                          slidesToShow: 2 // Mostra 1 slide em telas pequenas
-                      }
-                  }
-              ]
-          });
-      });
-  </script>
+<script>
+    $(document).ready(function(){
+        $('.carousel').slick({
+            dots: true,          // Adiciona os pontos de navegação
+            infinite: true,      // Loop infinito
+            speed: 500,          // Velocidade da transição
+            slidesToShow: 4,     // Exibe 3 slides ao mesmo tempo
+            slidesToScroll: 1,   // Rola 1 slide por vez
+            adaptiveHeight: true,
+            autoplay: true,      // Ativa o autoplay
+            autoplaySpeed: 2000, // Tempo entre os slides
+            responsive: [
+                {
+                    breakpoint: 1000,
+                    settings: {
+                        slidesToShow: 2 // Mostra 2 slides em telas menores
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 2 // Mostra 1 slide em telas pequenas
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
+<script src="./particle.js"></script>
+
+
+
+
 </body>
 </html>
