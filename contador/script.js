@@ -1,6 +1,6 @@
 /*Declare time*/
 // const countToDate = new Date().setDate(new Date().getDate() + 9);
-const countToDate = new Date(2024, 11, 13); // 11 é dezembro, 13 é o dia
+const countToDate = new Date(2025, 12, 22); // 11 é dezembro, 13 é o dia
 
 /*Calculate time from current date compared to the Declared time*/
 setInterval(() => {
