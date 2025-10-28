@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Leitura Facial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      background-color: #0f172a;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .scanner-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 0 30px #00f7ff;
+      border: 4px solid #00f7ff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scaleX(-1);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .scanner-line {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background-color: #00f7ff;
+      animation: scan 2s linear infinite;
+      z-index: 2;
+    }
+
+    @keyframes scan {
+      0% { top: 0%; }
+      100% { top: 100%; }
+    }
+
+    .liberado {
+      font-size: 1.5rem;
+      color: #00ff88;
+      display: none;
+      text-align: center;
+      z-index: 3;
+    }
+
+    #status {
+      font-size: 1.2rem;
+      min-height: 30px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #00f7ff;
+      color: #000;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #06d0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scanner-container">
+    <video id="video" autoplay muted playsinline></video>
+    <div class="scanner-line" id="scannerLine" style="display: none;"></div>
+    <div id="liberadoMsg" class="liberado">✅<br/>Liberado</div>
+  </div>
+
+  <div id="status"></div>
+
+  <button onclick="startScan()">Escanear</button>
+
+  <script>
+    const video = document.getElementById('video');
+    const liberadoMsg = document.getElementById('liberadoMsg');
+    let stream = null;
+
+    async function iniciarCamera() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+        video.srcObject = stream;
+        video.style.display = 'block';
+      } catch (err) {
+        alert("Erro ao acessar a câmera: " + err.message);
+      }
+    }
+
+    iniciarCamera();
+
+    function startScan() {
+      const line = document.getElementById('scannerLine');
+      const status = document.getElementById('status');
+
+      status.innerText = 'Realizando leitura facial...';
+      line.style.display = 'block';
+      liberadoMsg.style.display = 'none';
+      video.style.display = 'block';
+
+      setTimeout(() => {
+        line.style.display = 'none';
+        status.innerHTML = '<strong style="color: #00ff88;">✅ Acesso Autorizado</strong>';
+
+        // Parar vídeo e esconder
+        if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+        }
+        video.style.display = 'none';
+        liberadoMsg.style.display = 'block';
+
+        // Depois de 2 segundos, some o texto e reinicia a câmera
+        setTimeout(() => {
+          status.innerHTML = '';
+          liberadoMsg.style.display = 'none';
+          iniciarCamera(); // reinicia a câmera
+        }, 2000);
+
+      }, 3000); // tempo de escaneamento
+    }
+  </script>
+
+</body>
+</html>

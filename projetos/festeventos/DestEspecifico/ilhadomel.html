@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ilha do Mel Fest E... </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+      .whatsapp{
+        position: fixed;
+        z-index: 1000;
+        width: 60px;
+        height: 60px;
+        right: 20px;
+        bottom: 500px;
+        background-color: green;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        font-size: 50px;
+      }
+      .whatsapp:hover{
+        background-color: #c603d8;
+        text-decoration: none;
+        color: white;
+        transform: scale(1.1);
+        transition: 0.5s;
+      }
+      .video{
+        top: 0;
+        z-index: 5;
+        left: 0;
+      }
+      .logo{
+        position: absolute;
+        top: 10px;
+        left: auto;
+        right: 10px;
+        z-index: auto;
+      }
+      /* 
+** Layout, Text & Colors 
+*/
+
+body {
+  background: #efecf3;
+  font-size: 18px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Cards */
+.card-column {
+  width: 50%;
+  float: left;
+  padding: 4%;
+  box-sizing: border-box;
+}
+
+.column-1 {
+  padding-top: 100px;
+}
+
+.card {
+  width: 92%;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background: #EB5160;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 60px;
+}
+
+.border {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  border: 1px solid #fff;
+  opacity: 0.5;
+  left: -6px;
+  top: -6px;
+}
+
+.card h1 {
+  position: relative;
+  padding: 190px 0px 100px 10px;
+  width: 90%;
+}
+
+.card > img {
+  width: 90%;
+  position: absolute;
+  top: -6%;
+  left: -6%;
+}
+
+.card-color-0 {
+  background-color: rgb(8, 8, 158);
+}
+
+.card-color-1 {
+  background-color:blue;
+}
+
+.card-color-2 {
+  background-color:rgb(9, 103, 185);
+}
+
+.card-color-3 {
+  background-color: rgb(39, 154, 255);
+}
+
+/* A capa (fundo expandido) */
+.cover {
+  position: fixed;
+  background: #EB5160;
+  z-index: 100;
+  transform-origin: 50% 50%;
+}
+
+/* O conteúdo da página aberta */
+.open-content {
+  width: 100%;
+  z-index: 110;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.open-content img {
+  position: relative;
+  width: 90%;
+  margin-left: 3%;
+  margin-top: 20px;
+  z-index: 5;
+}
+
+.open-content .text {
+  background: #fff;
+  margin-top: -56%;
+  padding: 60% 5% 5% 5%;
+  width: 80%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+}
+
+.open-content .text h1, .open-content .text p {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.close-content {
+  display: block;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 30px;
+  height: 30px;
+}
+
+.close-content span {
+  background: #222;
+  width: 30px;
+  height: 6px;
+  display: block;
+  position: absolute;
+  top: 14px;
+}
+
+.x-1 {
+  transform: rotate(45deg);
+}
+
+.x-2 {
+  transform: rotate(-45deg);
+}
+
+/* 
+** Transições
+*/
+
+.card {
+  transition: opacity 200ms linear 320ms, transform 200ms ease-out 320ms;
+}
+
+.border {
+  transition: opacity 200ms linear, transform 200ms ease-out;
+}
+
+.card img {
+  transition: opacity 200ms linear 0ms, transform 200ms ease-in 0ms;
+}
+
+.card h1 {
+  transform: translate3d(20%, 0px, 0px);  
+  transition: opacity 200ms linear 120ms, transform 200ms ease-in 120ms;
+}
+
+/*Cartão clicado*/
+.card.clicked img {
+  transform: translate3d(0px, -40px, 0px);
+  opacity: 0;
+}
+
+.card.clicked .border {
+  opacity: 0;
+  transform: scale(1.3);
+}
+
+.card.out, .card.out img {
+  transform: translate3d(0px, -40px, 0px);
+  opacity: 0;
+}
+
+.card.out h1, .card.clicked h1 {
+  transform: translate3d(20%, -40px, 0px);
+  opacity: 0;
+}
+
+.cover {
+  transition: transform 300ms ease-in-out;
+}
+
+.open-content {
+  transition: opacity 200ms linear 0ms;
+}
+
+.open-content.open {
+  opacity: 1;
+  pointer-events: all;
+  transition-delay: 1000ms;
+}
+
+/* 
+** Consultas de mídia
+*/
+
+@media screen and (max-width: 600px) {
+  .card-column {
+    width: 90%;
+  }
+  
+  .column-1 {
+    padding-top: 0px;
+  }
+  
+  .open-content img {
+    margin-top: 40px;
+  }
+}
+/* From Uiverse.io by doniaskima */ 
+.btn-17,
+.btn-17 *,
+.btn-17 :after,
+.btn-17 :before,
+.btn-17:after,
+.btn-17:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+
+.btn-17 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: #000;
+  background-image: none;
+  color: #fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+  text-transform: uppercase;
+  width: 80%;
+  margin: auto;
+}
+
+.btn-17:disabled {
+  cursor: default;
+}
+
+.btn-17:-moz-focusring {
+  outline: auto;
+}
+
+.btn-17 svg {
+  display: block;
+  vertical-align: middle;
+}
+
+.btn-17 [hidden] {
+  display: none;
+}
+
+.btn-17 {
+  border-radius: 99rem;
+  border-width: 2px;
+  padding: 0.8rem 3rem;
+  z-index: 0;
+}
+
+.btn-17,
+.btn-17 .text-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.btn-17 .text-container {
+  display: block;
+  mix-blend-mode: difference;
+}
+
+.btn-17 .text {
+  display: block;
+  position: relative;
+}
+
+.btn-17:hover .text {
+  -webkit-animation: move-up-alternate 0.3s forwards;
+  animation: move-up-alternate 0.3s forwards;
+}
+
+@-webkit-keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.btn-17:after,
+.btn-17:before {
+  --skew: 0.2;
+  background: #fff;
+  content: "";
+  display: block;
+  height: 102%;
+  left: calc(-50% - 50% * var(--skew));
+  pointer-events: none;
+  position: absolute;
+  top: -104%;
+  transform: skew(calc(150deg * var(--skew))) translateY(var(--progress, 0));
+  transition: transform 0.2s ease;
+  width: 50%;
+}
+
+.btn-17:after {
+  --progress: 0%;
+  left: calc(50% + 50% * var(--skew));
+  top: 102%;
+  z-index: -1;
+}
+
+.btn-17:hover:before {
+  --progress: 100%;
+}
+
+.btn-17:hover:after {
+  --progress: -102%;
+}
+      
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-color: blue !important">
+        <img src="images/logo.png" alt="logo" width="50" height="50" class="d=z-index-5" style="width: auto;">
+        <a class="navbar-brand" href="../index.html">Fest Eventos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+          <ul class="navbar-nav mr-auto">
+           <li class="nav-item active">
+          <a class="nav-link" href="../destinos/galeria.html"> Destinos <span class="sr-only">(página atual)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="../isabela/eventos.html"> Eventos </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="../sobre/sobre.html"> Sobre </a>
+        </li>
+
+        <li class="nav-item active dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Contato
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../isabela/index.html"> Fale Conosco </a>
+            <a class="dropdown-item" href="../isabela/index.html"> Trabalhe Conosco </a>
+            <a class="dropdown-item" href="../Parceiro/index.html"> Seja Nosso Parceiro </a>
+          </div>
+        </li>
+
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+          </form>
+        </div>
+      </nav>
+
+    
+
+    
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="images/1.jpeg" alt="Primeiro Slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="images/2.png" alt="Segundo Slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="images/3.png" alt="Terceiro Slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Anterior</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Próximo</span>
+  </a>
+</div>
+
+    <div class="container">
+    <br>
+    <br>
+    <br>
+   
+  
+    <div class="row">
+       
+
+     <div class="row">
+        <div class="col-12"> 
+            <div style="max-width: 900px; margin: 40px auto; padding: 30px; border: 3px solid #007B8A; border-radius: 15px; background-color: #ffffff;">
+
+  <h1 style="font-size: 36px; color: #007B8A; margin-bottom: 10px;">Ilha do Mel</h1>
+  <h2 style="font-size: 24px; color: #004d4d; margin-bottom: 20px;">Conheça Ilha do Mel </h2>
+
+  <p><strong>Sobre Ilha do Mel:</strong> localizada na Baía de Paranaguá, no litoral do Paraná, é um destino de ecoturismo famoso por suas praias, trilhas e rica história. A ilha, a aproximadamente 120 km de Curitiba, oferece um ambiente tranquilo, com a possibilidade de contato direto com a natureza e atividades como mergulho, surf e passeios de barco.</p>
+
+  <p><strong>Atrativo turístico natural:</strong> A maior parte da ilha é uma Estação Ecológica, com mais de 90% de sua área preservada, onde a fauna e a flora são protegidas. A ilha possui praias, morros, trilhas e formações rochosas como a Gruta das Encantadas e o Farol das Conchas, que proporcionam paisagens deslumbrantes. A ilha possui um rico patrimônio histórico, incluindo a Fortaleza, o Farol e a Rádio Farol. </p>
+
+  <p><strong> Destino:</strong> <br> 
+    Curitiba:
+Siga pela BR-277 até Paranaguá ou Pontal do Sul, onde se encontram os pontos de embarque para a ilha. <br><br>
+Travessia:
+A travessia para a Ilha do Mel pode ser feita de barco, com saídas de Pontal do Sul (mais rápida, cerca de 30 minutos) ou de Paranaguá (mais longa, cerca de 1h30). 
+ <BR><br>
+Estacionamento:
+Em Pontal do Sul e Paranaguá, há estacionamentos próximos aos pontos de embarque para deixar seu veículo.
+</p>
+
+ 
+
+</div>
+          
+        </div>
+        <div class="col-12">
+           <iframe width="100%" height="560" src="https://www.youtube.com/embed/yqBLqf16bFo?si=fUT3-0gDW_gvpTi-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            
+        </div>
+    </div>
+    
+</div>
+        <h2 class="text-center m-5"> Informações </h2>
+    
+  <!--
+  Observação: este código não está pronto para ser usado como está em produção no seu site. Ele precisará ser adaptado para ser compatível com vários navegadores e acessível. Eu só queria compartilhar como se pode obter esse efeito com CSS e JS, sem outras dependências.
+-->
+<div class="container">
+  <div class="card-column column-0">
+    <a href="https://maps.app.goo.gl/rNT1B6wXcotUiG6M9">
+    <div class="card card-color-0">
+      <div class="border"></div>
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/deathtostock-00.jpg" />
+      <h1>  Estadia </h1>
+    </div>
+</a>
+    <a href="https://maps.app.goo.gl/JSQ96gYV3bgkncsV9">
+    <div class="card card-color-2">
+      <div class="border"></div>
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/deathtostock-02.jpg" />
+      <h1> Restaurante </h1>
+    </div>
+  </div>
+</a>
+  <div class="card-column column-1">
+    <a href="https://maps.app.goo.gl/zi3AXByjphvY8gzeA">
+    <div class="card card-color-1">
+      <div class="border"></div>
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/deathtostock-01.jpg" />
+      <h1> Passeios e Atividades </h1>
+    </div>
+    </a>
+    <a href="https://www.google.com"></a>
+    <div class="card card-color-3">
+      <div class="border"></div>
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/deathtostock-03.jpg" />
+      <h1 style="font-size: 35px;">Política de Cancelamento </h1>
+      
+      <!-- From Uiverse.io by doniaskima --> 
+      <button class="btn-17"onclick="toggleTexto()" style="z-index: 999;">
+      <span class="text-container">
+       <span class="text">Ver mais </span>
+      </span>
+      </button>
+
+      <div id="textoPolitica" style=" padding: 15px;">
+        <div id="textoCompleto" style ="display: none;">
+             <p> Para carcelar a reserva, é necessario entrar em contato com o estabelecimento com pelo menos 48 Horas de antecedência, sera cobrado 50% do valor total da reserva, caso não seja feito o cancelamenta com antecedência, o valor total da reseva será cobrado.</p>   
+        </div>
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<div id="cover" class="cover"></div>
+
+<div id="open-content" class="open-content">
+  <a href="#" id="close-content" class="close-content"><span class="x-1"></span><span class="x-2"></span></a>
+  <img id="open-content-image" src="" />
+  <div class="text" id="open-content-text">
+  </div>
+</div>
+        
+        
+  
+ 
+
+
+
+
+
+
+
+
+
+
+    <a href="https://wa.me/+5544999237694" class=" whatsapp ">
+    <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+    <script>
+
+  function toggleTexto() {
+    const resumo = document.getElementById("textoResumo");
+    const completo = document.getElementById("textoCompleto");
+    const botao = event.target;
+
+    if (completo.style.display === "none") {
+      completo.style.display = "block";
+      resumo.style.display = "none";
+      botao.textContent = "Ver menos";
+    } else {
+      completo.style.display = "none";
+      resumo.style.display = "block";
+      botao.textContent = "Ver mais";
+    }
+  }
+  // listando variáveis aqui para que fiquem no escopo global
+var cards, nCards, cover, openContent, openContentText, pageIsOpen = false,
+    openContentImage, closeContent, windowWidth, windowHeight, currentCard;
+
+// iniciar o processo
+init();
+
+function init() {
+  resize();
+  selectElements();
+  attachListeners();
+}
+
+// selecione todos os elementos no DOM que serão usados
+function selectElements() {
+  cards = document.getElementsByClassName('card'),
+  nCards = cards.length,
+  cover = document.getElementById('cover'),
+  openContent = document.getElementById('open-content'),
+  openContentText = document.getElementById('open-content-text'),
+  openContentImage = document.getElementById('open-content-image')
+  closeContent = document.getElementById('close-content');
+}
+
+/* Anexando três ouvintes de eventos aqui:
+- um ouvinte de evento de clique para cada cartão
+- um ouvinte de evento de clique para o botão de fechar
+- um ouvinte de evento de redimensionamento na janela
+*/
+function attachListeners() {
+  for (var i = 0; i < nCards; i++) {
+    attachListenerToCard(i);
+  }
+  closeContent.addEventListener('click', onCloseClick);
+  window.addEventListener('resize', resize);
+}
+
+function attachListenerToCard(i) {
+  cards[i].addEventListener('click', function(e) {
+    var card = getCardElement(e.target);
+    onCardClick(card, i);
+  })
+}
+
+
+
+/*
+* Este efeito é criado pegando uma div de "capa" separada, colocando-a
+* na mesma posição do cartão clicado e animando-a para
+* se tornar o plano de fundo da "página" aberta.
+* Parece que o próprio cartão está sendo animado para o plano de fundo,
+* mas fazer dessa forma é mais eficiente (porque a div de capa está
+* absolutamente posicionada e não tem filhos), e há menos
+* necessidade de lidar com o z-index e outros elementos no cartão
+*/
+function animateCoverUp(card) {
+  // obter a posição do cartão clicado
+  var cardPosition = card.getBoundingClientRect();
+  // obtenha o estilo do cartão clicado
+  var cardStyle = getComputedStyle(card);
+  setCoverPosition(cardPosition);
+  setCoverColor(cardStyle);
+  scaleCoverToFillWindow(cardPosition);
+  // atualizar o conteúdo da página aberta
+  openContentText.innerHTML = '<h1>'+card.children[2].textContent+'</h1>'+paragraphText;
+  openContentImage.src = card.children[1].src;
+  setTimeout(function() {
+    // atualize a posição de rolagem para 0 (para que fique no topo da página 'aberta')
+    window.scroll(0, 0);
+    // definir página para abrir
+    pageIsOpen = true;
+  }, 300);
+}
+
+function animateCoverBack(card) {
+  var cardPosition = card.getBoundingClientRect();
+  // o cartão original pode estar em uma posição diferente, devido à rolagem, então a posição da capa precisa ser redefinida antes de reduzir novamente
+  setCoverPosition(cardPosition);
+  scaleCoverToFillWindow(cardPosition);
+  // animar escala de volta ao tamanho e posição do cartão
+  cover.style.transform = 'scaleX('+1+') scaleY('+1+') translate3d('+(0)+'px, '+(0)+'px, 0px)';
+  setTimeout(function() {
+    // definir o conteúdo de volta para vazio
+    openContentText.innerHTML = '';
+    openContentImage.src = '';
+    // estilize a capa como 0x0 para que fique escondida
+    cover.style.width = '0px';
+    cover.style.height = '0px';
+    pageIsOpen = false;
+    // remova a classe clicada para que o cartão seja animado novamente
+    currentCard.className = currentCard.className.replace(' clicked', '');
+  }, 301);
+}
+
+function setCoverPosition(cardPosition) {
+  // estilize a capa de modo que fique exatamente na mesma posição do cartão
+
+  cover.style.left = cardPosition.left + 'px';
+  cover.style.top = cardPosition.top + 'px';
+  cover.style.width = cardPosition.width + 'px';
+  cover.style.height = cardPosition.height + 'px';
+}
+
+function setCoverColor(cardStyle) {
+  // estilize a capa para que ela tenha a mesma cor do cartão
+  cover.style.backgroundColor = cardStyle.backgroundColor;
+}
+
+function scaleCoverToFillWindow(cardPosition) {
+  // calcular a escala e a posição para que o cartão preencha a página,
+  var scaleX = windowWidth / cardPosition.width;
+  var scaleY = windowHeight / cardPosition.height;
+  var offsetX = (windowWidth / 2 - cardPosition.width / 2 - cardPosition.left) / scaleX;
+  var offsetY = (windowHeight / 2 - cardPosition.height / 2 - cardPosition.top) / scaleY;
+  // defina a transformação na capa - ela será animada por causa da transição definida no CSS
+  cover.style.transform = 'scaleX('+scaleX+') scaleY('+scaleY+') translate3d('+(offsetX)+'px, '+(offsetY)+'px, 0px)';
+}
+
+/* Quando o fechamento é clicado */
+function onCloseClick() {
+  //remova a classe aberta para que o conteúdo da página seja animado
+  openContent.className = openContent.className.replace(' open', '');
+  // animar a capa de volta à posição original do cartão e tamanho
+  animateCoverBack(currentCard);
+  // animar em outros cartões
+  animateOtherCards(currentCard, false);
+}
+
+function animateOtherCards(card, out) {
+  var delay = 100;
+  for (var i = 0; i < nCards; i++) {
+    // animar cartas em um escalonamento, 1 a cada 100 ms
+    if (cards[i] === card) continue;
+    if (out) animateOutCard(cards[i], delay);
+    else animateInCard(cards[i], delay);
+    delay += 100;
+  }
+}
+
+// animações em cartas individuais (adicionando/removendo nomes de cartas)
+function animateOutCard(card, delay) {
+  setTimeout(function() {
+    card.className += ' out';
+   }, delay);
+}
+
+function animateInCard(card, delay) {
+  setTimeout(function() {
+    card.className = card.className.replace(' out', '');
+  }, delay);
+}
+
+// esta função pesquisa na árvore DOM até atingir o elemento do cartão que foi clicado
+function getCardElement(el) {
+  if (el.className.indexOf('card ') > -1) return el;
+  else return getCardElement(el.parentElement);
+}
+
+// função de redimensionamento - registra a largura e a altura da janela
+function resize() {
+  if (pageIsOpen) {
+    // update position of cover
+    var cardPosition = currentCard.getBoundingClientRect();
+    setCoverPosition(cardPosition);
+    scaleCoverToFillWindow(cardPosition);
+  }
+  windowWidth = window.innerWidth;
+  windowHeight = window.innerHeight;
+}
+
+var paragraphText = '<p>Somebody once told me the world is gonna roll me. I ain\'t the sharpest tool in the shed. She was looking kind of dumb with her finger and her thumb in the shape of an "L" on her forehead. Well the years start coming and they don\'t stop coming. Fed to the rules and I hit the ground running. Didn\'t make sense not to live for fun. Your brain gets smart but your head gets dumb. So much to do, so much to see. So what\'s wrong with taking the back streets? You\'ll never know if you don\'t go. You\'ll never shine if you don\'t glow.</p><p>Hey now, you\'re an all-star, get your game on, go play. Hey now, you\'re a rock star, get the show on, get paid. And all that glitters is gold. Only shooting stars break the mold.</p><p>It\'s a cool place and they say it gets colder. You\'re bundled up now, wait till you get older. But the meteor men beg to differ. Judging by the hole in the satellite picture. The ice we skate is getting pretty thin. The water\'s getting warm so you might as well swim. My world\'s on fire, how about yours? That\'s the way I like it and I never get bored.</p>';
+
+function togglePolitica() {
+  const texto = document.getElementById("textoPolitica");
+  if (texto.style.display === "none" || texto.style.display === "") {
+    texto.style.display = "block";
+  } else {
+    texto.style.display = "none";
+  }
+}
+</script>
+
+
+  </div> 
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40730.721875455456!2d-48.33711735657879!3d-25.53433926523218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dbbc8b7a86c497%3A0xf126aff589ba0796!2sIlha%20do%20Mel!5e0!3m2!1spt-BR!2sbr!4v1754008968601!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+<footer class="bg-primary text-light py-5">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md">
+        
+        <h5> Navegação</h5>
+        
+        <ul class="list-unstyled">
+          <li> Sobre Nós</li>
+          <li> Eventos</li>
+          <li> Viagens</li>
+        </ul>
+      </div>
+
+      <div class="col-md">
+        
+        <h5> Contato</h5>
+        
+        <ul class="list-unstyled">
+          <li> fale Conosco</li>
+          <li> Seja Nosso Parceiro</li>
+          <li> @festeventos</li>
+        </ul>
+      </div>
+
+      <div class="col-md">
+        
+        <h5> Informações</h5>
+        
+        <ul class="list-unstyled">
+          <li> Razão social da empresa</li>
+          <li> CNPJ : 00.000.000/0000-0</li>
+          <li> Rua Valdir Santin, 451, Nova Londrina - pr</li>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

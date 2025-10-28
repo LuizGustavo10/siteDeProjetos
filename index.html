@@ -12,54 +12,80 @@
 
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
-
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <link href="css/bootstrap-icons.css" rel="stylesheet">
-
     <link href="css/templatemo-festava-live.css" rel="stylesheet">
+    <link href="css/particle.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/estilo.css">
+    <script type="text/javascript" src="https://counter4.optistats.ovh/private/counter.js?c=lfmjzmfft8qqjzenqdxygj1lb6dbbtq4&down=async" async></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css">
 
+  <style>
+      #lightgallery {
+      column-count: 4;
+      column-gap: 10px;
+      padding: 20px;
+    }
 
-    <!--
+    /* Responsividade */
+    @media (max-width: 992px) {
+      #lightgallery {
+        column-count: 3;
+      }
+    }
 
-TemplateMo 583 Festava Live
+    @media (max-width: 768px) {
+      #lightgallery {
+        column-count: 2;
+      }
+    }
 
-https://templatemo.com/tm-583-festava-live
+    @media (max-width: 480px) {
+      #lightgallery {
+        column-count: 2;
+      }
+    }
 
--->
+    #lightgallery a {
+      display: inline-block;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    #lightgallery img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    #lightgallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+  </style>
+  </style>
+
 </head>
 
 <body>
 
     <main>
 
-        <header class="site-header">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-12 col-12 d-flex flex-wrap">
-                        <p class="d-flex me-4 mb-0">
-                            <i class="bi-person custom-icon me-2"></i>
-                            <strong class="text-dark">Olá</strong>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </header>
-
 
         <nav class="navbar navbar-expand-lg">
+
             <div class="container">
+                <img src="https://yt3.ggpht.com/IPtKcXlW-WS5IQiRUi793PjOclx6IUiG54gLz8Jqh_bJ2oTb5AooKa9uW6oWywScQFkT3HXf=s600-c-k-c0x00ffffff-no-rj-rp-mo"
+                    width="50">
                 <a class="navbar-brand" href="index.html">
-                    Infonl
+                    Tecnum
                 </a>
 
-                <a href="https://www.youtube.com/channel/UCnwPeolIPmCRsjiZsFUEJ8A" class="btn custom-btn d-lg-none ms-auto me-4">Youtube</a>
+                <a href="http://infonl.com.br/senova" class="btn custom-btn d-lg-none ms-auto me-4">acessar</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +93,12 @@ https://templatemo.com/tm-583-festava-live
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
+
+
+
+
                     <ul class="navbar-nav align-items-lg-center ms-auto me-lg-5">
+
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_1">Principal</a>
                         </li>
@@ -92,17 +123,21 @@ https://templatemo.com/tm-583-festava-live
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_6">Contato</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="ferramentasprog/tecnologias.html">Tecnologias</a>
+                        </li>
                     </ul>
 
-                    <a href="https://www.youtube.com/channel/UCnwPeolIPmCRsjiZsFUEJ8A"
-                        class="btn custom-btn d-lg-block d-none">Acessar Youtube</a>
+                    <a href="http://infonl.com.br/senova" class="btn custom-btn d-lg-block d-none">Acessar</a>
                 </div>
             </div>
         </nav>
 
-
+        <!-- particulas -->
+        <div id="particles-js"></div>
+        <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- stats.js lib -->
+        <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
         <section class="hero-section" id="section_1">
-            <div class="section-overlay"></div>
 
             <div class="container d-flex justify-content-center align-items-center">
                 <div class="row">
@@ -110,44 +145,47 @@ https://templatemo.com/tm-583-festava-live
                     <div class="col-12 mt-auto mb-5 text-center">
                         <small>Seja bem-vindo ao</small>
 
-                        <h1 class="text-white mb-5">Site de projetos senac</h1>
+                        <h1 class="text-white mb-5">Site de projetos</h1>
 
                         <a class="btn custom-btn smoothscroll" href="#section_2">vamos começar</a>
                     </div>
 
                     <div class="col-lg-12 col-12 mt-auto d-flex flex-column flex-lg-row text-center">
                         <div class="date-wrap">
-                            <h5 class="text-white">
+                            <h6 class="text-white">
                                 <i class="custom-icon bi-person me-2"></i>
-                                Desenvolvido por Luiz Gustavo
-                            </h5>
+                                Dev. Luiz Gustavo
+                            </h6>
                         </div>
 
                         <div class="location-wrap mx-auto py-3 py-lg-0">
                             <h5 class="text-white">
-                                <i class="custom-icon bi-geo-alt me-2"></i>
-                                Av. Fioravante José Montanher, 576
+
                             </h5>
                         </div>
 
+
+
                         <div class="social-share">
                             <ul class="social-icon d-flex align-items-center justify-content-center">
-                                <span class="text-white me-3">Acesse:</span>
+
 
                                 <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
+                                    <a href="https://www.facebook.com/profile.php?id=100091973624550"
+                                        class="social-icon-link">
                                         <span class="bi-facebook"></span>
                                     </a>
                                 </li>
 
                                 <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
-                                        <span class="bi-twitter"></span>
+                                    <a href="https://padlet.com/gustavo180g/perguntas-sobre-eletricidade-wzyf7tshw6a3dwcw"
+                                        class="social-icon-link">
+                                        <span class="bi-youtube"></span>
                                     </a>
                                 </li>
 
                                 <li class="social-icon-item">
-                                    <a href="#" class="social-icon-link">
+                                    <a href="https://www.instagram.com/luiz.gustavo_oficial/" class="social-icon-link">
                                         <span class="bi-instagram"></span>
                                     </a>
                                 </li>
@@ -158,11 +196,7 @@ https://templatemo.com/tm-583-festava-live
             </div>
 
             <div class="video-wrap">
-                <video autoplay="" loop="" muted="" class="custom-video" poster="">
-                    <source src="video/pexels-2022395.mp4" type="video/mp4">
 
-                    Your browser does not support the video tag.
-                </video>
             </div>
         </section>
 
@@ -173,249 +207,279 @@ https://templatemo.com/tm-583-festava-live
 
                     <div class="col-lg-6 col-12 mb-4 mb-lg-0 d-flex align-items-center">
                         <div class="services-info">
-                            <h2 class="text-white mb-4">Sobre o infonl</h2>
 
-                            <p class="text-white">infonl.com.br foi desenvolvido para ser uma plataforma online aonde
-                                possar ser hospedado o projetos de todos os alunos por turma.</p>
+                            <div>
+                                <h2 class="text-white"> Bem-vindo Visitante nº</h2>
+                                <div id="sfclfmjzmfft8qqjzenqdxygj1lb6dbbtq4"></div>
+                            </div>
+                            <br>
 
-                            <h6 class="text-white mt-4">Qual o propósito?</h6>
+                            <h2 class="text-white mb-4 corPrima">Sobre:</h2>
 
-                            <p class="text-white">Guardar projetos e mostrar a evolução dos alunos.</p>
+                            <p class="text-white"> Meu nome é Luiz Gustavo, sou um apaixonado por tecnologia e como ela
+                                pode mudar a vida das pessoas, sou instrutor de informática na instituição senac desde
+                                2023, atuo na área de informática e programação desde 2018. </p>
+                            <p class="text-white"> Minha formação: </p>
+                            <ul class="text-white list-group">
 
-                            <h6 class="text-white mt-4">Geração de ideias</h6>
+                                <li class="text-white row">
+                                    <div class="col-3 mt-1"> <img src="./images/ifpr.jpg" alt="" class="cardImg"> </div>
+                                    <div class="col mt-4"> Análise e Desenvolvimento de Sistemas - IFPR</div>
 
-                            <p class="text-white">Um site de insights para todos.</p>
+
+                                </li>
+
+                                <li class="text-white row">
+                                    <div class="col-3 mt-1"> <img src="./images/unicesumar.jpg" alt="" class="cardImg">
+                                    </div>
+                                    <div class="col mt-4"> Pós Graduação em MBA em Gestão Negócios e Inovação -
+                                        Unicesumar</div>
+                                </li>
+
+                                <li class="text-white row">
+                                    <div class="col-3 mt-1"><img src="./images/senac.png" alt="" class="cardImg"> </div>
+                                    <div class="col mt-4"> Pós Graduação Especialização em Docência do Ensino Técnico -
+                                        Senac</div>
+
+                                </li>
+
+                            </ul>
+                            <br><br>
+                            <p class="text-white"> Linguagens e frameworks Dominadas: </p>
+                            <div class="row">
+                                <div class="col-3 "><img src="./images/linguagens/java.svg" alt="" class="cardImg">
+                                </div>
+                                <div class="col-3 "><img src="./images/linguagens/python.jpeg" alt="" class="cardImg">
+                                </div>
+                                <div class="col-3 "><img src="./images/linguagens/php.png" alt="" class="cardImg">
+                                </div>
+                                <div class="col-3 "><img src="./images/linguagens/html.jpg" alt="" class="cardImg">
+                                </div>
+                                <div class="col-3 "><img src="./images/linguagens/css.jpg" alt="" class="cardImg">
+                                </div>
+                                <div class="col-3 "><img src="./images/linguagens/js.jpg" alt="" class="cardImg"> </div>
+                                <div class="col-3"><img src="./images/linguagens/flutter.png" alt="" class="cardImg">
+                                </div>
+                                <div class="col-3"><img src="./images/linguagens/git.jpg" alt="" class="cardImg"> </div>
+                            </div>
+
                         </div>
                     </div>
+
 
                     <div class="col-lg-6 col-12">
                         <div class="about-text-wrap">
-                            <img src="https://wallpapers.com/images/hd/programming-hd-2eo94s73hxhwjcta.jpg"
-                                class="about-image img-fluid">
+                            <img src="images/rio2.jpg" class="about-image img-fluid">
 
+                            <h6 class="text-white mt-4">Qual o propósito desse site?</h6>
 
+                            <p class="text-white">Guardar projetos e mostrar a evolução dos alunos.</p>
                         </div>
                     </div>
+
+
 
                 </div>
             </div>
         </section>
 
 
-        <section class="artists-section section-padding" id="section_3" style="background-color: black;">
+        <section class="artists-section section-padding" id="section_3" style="background-color: #121731;">
             <div class="container">
                 <div class="row justify-content-center">
 
                     <div class="col-12 text-center">
 
 
-                            <section class="wrapper">
+                        <section class="wrapper">
+                            <div class="container">
+
+                                <div class="row">
+                                    <div class="col text-center mb-5">
+                                        <h1 class="display-4 font-weight-bolder"> Conheça os projetos pessoais e feitos
+                                            em sala </h1>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
                                 <div class="container">
 
-                                    <div class="row">
-                                        <div class="col text-center mb-5">
-                                            <h1 class="display-4 font-weight-bolder"> Conheça os projetos feitos em sala </h1>
-                                            <p class="lead">Acesso rápido logo abaixo </p>
+                                    <div class="card"
+                                        onclick="window.location.href=' https://infonl.com.br/projetos/rivertour';">
+                                        <div class="card__header">
+                                            <img src="images/as.png" alt="card__image" class="card__image" width="600"
+                                                height="180px">
+                                        </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-red">Feito em sala</span>
+                                            <h4>Projeto River Tour</h4>
+                                            <p class="text-white"> Um site voltado para o turismo local da turma
+                                                Assistente Administrativo de 2023.</p>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-
-                                        
-                                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                           
-                                                
-                                        
-                                            <div class="card text-dark card-has-bg click-col" onclick="window.location.href='https://infonl.com.br/rh';"
-                                                style="background-image:url(images/rh2.png);">
-                                              
-                                                <img class="card-img d-none"
-                                                    src="images/rh2.png"
-                                                    alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
-                                               
-                                                   
-                                                <div class="card-img-overlay d-flex flex-column">
-                                                 
-                                                    <div class="card-body">  
-                                                       
-                                                        <h4 class="card-title mt-0 "><a class="text-dark"
-                                                                href="https://infonl.com.br/rh"> Site Conexão RH</a></h4>
-                                                        <small><i class="far fa-clock"></i> Um site voltado para a educação corporativa</small>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <div class="media">
-                                                            <img class="mr-3 rounded-circle"
-                                                                src="https://avatars.githubusercontent.com/u/37215681?s=400&u=e793b96cb9a61bb677ab8df98a3e3de4cf93da44&v=4"
-                                                                alt="Generic placeholder image" style="max-width:50px">
-                                                            <div class="media-body">
-                                                                <h6 class="my-0 text-dark d-block">Turma de Recursos Humanos</h6>
-                                                                <small>Ano 2023</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                              
-                                                </div>
-                                            
-                                            </div>
-                                      
+                                    <div class="card" onclick="window.location.href='https://infonl.com.br/rh';">
+                                        <div class="card__header">
+                                            <img src="images/rh2.png" alt="card__image" class="card__image" width="600"
+                                                height="180px">
                                         </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-red">Feito em sala</span>
+                                            <h4>Projeto Conexão RH</h4>
+                                            <p class="text-white"> Um site voltado para a educação corporativa, feito
+                                                junto a Turma de Recursos Humanos de 2023.</p>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="card"
+                                        onclick="window.location.href='https://infonl.com.br/projetos/ODS'">
+                                        <div class="card__header">
+                                            <img src="images/tecnico informatica 2024.jpg" alt="card__image"
+                                                class="card__image" width="600" height="180px">
+                                        </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-red">Feito em sala</span>
+                                            <h4>Projeto ODS</h4>
+                                            <p class="text-white"> Conjunto de sites voltados para os Objetivos de
+                                                Desenvolvimento Sustentável da Turma Técnico de Informática de 2024.</p>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card"
+                                        onclick="window.location.href='https://infonl.com.br/projetos/ferramentas/prog.html';">
+                                        <div class="card__header">
+                                            <img src="images/linguagens/programador.jpg" alt="card__image"
+                                                class="card__image" width="600" height="180px">
+                                        </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-blue">Pessoal</span>
+                                            <h4>Projeto ferramentas de programação</h4>
+                                            <p class="text-white"> Projeto voltado para listar todas ferramentas de
+                                                programação que são uteis para programadores.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card"
+                                        onclick="window.location.href='https://infonl.com.br/projetos/ferramentas/ias.html';">
+                                        <div class="card__header">
+                                            <img src="images/linguagens/arca.jpeg" alt="card__image" class="card__image"
+                                                width="600" height="180px">
+                                        </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-blue">Pessoal</span>
+                                            <h4>Projeto Arca da inovação</h4>
+                                            <p class="text-white"> Projeto no qual reúne as inteligências artificiais
+                                                mais úteis e seus propósitos!</p>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="card"
+                                        onclick="window.location.href=' https://infonl.com.br/projetos/trilha/';">
+                                        <div class="card__header">
+                                            <img src="images/linguagens/trilhas.jpg" alt="card__image"
+                                                class="card__image" width="600" height="180px">
+                                        </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-blue">Pessoal</span>
+                                            <h4>Projeto Trilha de Aprendizagem</h4>
+                                            <p class="text-white"> Projeto feito em união há vários instrutores com foco
+                                                em reforçar o aprendizado através de teste.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card"
+                                        onclick="window.location.href=' https://infonl.com.br/projetos/sintec';">
+                                        <div class="card__header">
+                                            <img src="images/sintec.png" alt="card__image" class="card__image"
+                                                width="600" height="180px">
+                                        </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-red">Feito em sala</span>
+                                            <h4>Projeto Sintec</h4>
+                                            <p class="text-white"> Projeto feito pelo aluno TAUÃ FELIPE ROCHA AMARO do
+                                                curso técnico de informática para internet 2024</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card"
+                                        onclick="window.location.href=' https://infonl.com.br/projetos/senova';">
+                                        <div class="card__header">
+                                            <img src="images/senova.jpg" alt="card__image" class="card__image"
+                                                width="600" height="180px">
+                                        </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-blue"> Pessoal  </span>
+                                            <h4>Projeto SeNova</h4>
+                                            <p class="text-white">
+                                                Inteligência Artificial voltada para os alunos e docentes, está entre os 18 projetos finalistas nacionais do
+                                                Programa de Reconhecimento – Melhores Práticas Docentes 2025.
+                                                Foram 431 projetos inscritos em todo o Brasil e apenas 6 escolhidos na
+                                                região Sul e Sudeste. 
+
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card"
+                                        onclick="window.location.href=' https://olhaoflash.com.br';">
+                                        <div class="card__header">
+                                            <img src="images/olhaoflash.png" alt="card__image" class="card__image"
+                                                width="600" height="180px">
+                                        </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-blue"> Pessoal  </span>
+                                            <h4>Olha o Flash</h4>
+                                            <p class="text-white">
+                                                Site feito para clientes de Paranavaí, com o objetivo de divulgar eventos e fotos da região.
+
+                                            </p>
+                                        </div>
+                                    </div>
+
                                     
 
-
-                                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4"  onclick="window.location.href='https://infonl.com.br/rivertour';">
-                                            <div class="card text-dark card-has-bg click-col"
-                                                style="background-image:url('images/as.png');">
-                                                <img class="card-img d-none"
-                                                    src="images/as.png"
-                                                    alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
-                                                <div class="card-img-overlay d-flex flex-column">
-                                                    <div class="card-body">
-                                                     
-                                                        <h4 class="card-title mt-0 "><a class="text-dark"
-                                                                herf="https://creativemanner.com">Projeto River Tour</a></h4>
-                                                        <small><i class="far fa-clock"></i> Um site voltado para o turismo local </small>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <div class="media">
-                                                            <img class="mr-3 rounded-circle"
-                                                                src="https://avatars.githubusercontent.com/u/37215681?s=400&u=e793b96cb9a61bb677ab8df98a3e3de4cf93da44&v=4"
-                                                                alt="Generic placeholder image" style="max-width:50px">
-                                                            <div class="media-body">
-                                                                <h6 class="my-0 text-dark d-block">Turma Assistente Administrativo</h6>
-                                                                <small>ano 2023</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="card"
+                                        onclick="window.location.href=' https://luizgustavo10.github.io/projetos/festeventos/';">
+                                        <div class="card__header">
+                                            <img src="images/festeventos.png" alt="card__image" class="card__image"
+                                                width="600" height="180px">
                                         </div>
+                                        <div class="card__body">
+                                            <span class="tag tag-red"> Feito em sala  </span>
+                                            <h4>FestEventos</h4>
+                                            <p class="text-white">
+                                                Site feito pela turma Tec. Informática 2025 em parceria com Assistente Adminsitrativo 2025. Com objetivo de divulgar destinos turistícos.
 
-
-                                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                            <div class="card text-dark card-has-bg click-col"
-                                                style="background-image:url('https://source.unsplash.com/600x900/?computer,design');">
-                                                <img class="card-img d-none"
-                                                    src="https://source.unsplash.com/600x900/?computer,design"
-                                                    alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
-                                                <div class="card-img-overlay d-flex flex-column">
-                                                    <div class="card-body">
-                                                        <small class="card-meta mb-2">Thought Leadership</small>
-                                                        <h4 class="card-title mt-0 "><a class="text-dark"
-                                                                herf="https://creativemanner.com">Design Studio Lorem
-                                                                Ipsum Sit Amet Consectetur dipisi?</a></h4>
-                                                        <small><i class="far fa-clock"></i> October 15, 2020</small>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <div class="media">
-                                                            <img class="mr-3 rounded-circle"
-                                                                src="https://avatars.githubusercontent.com/u/37215681?s=400&u=e793b96cb9a61bb677ab8df98a3e3de4cf93da44&v=4"
-                                                                alt="Generic placeholder image" style="max-width:50px">
-                                                            <div class="media-body">
-                                                                <h6 class="my-0 text-dark d-block">turma</h6>
-                                                                <small>Projeto</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </p>
                                         </div>
-
-
-                                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                            <div class="card text-dark card-has-bg click-col"
-                                                style="background-image:url('https://source.unsplash.com/600x900/?tech,street');">
-                                                <img class="card-img d-none"
-                                                    src="https://source.unsplash.com/600x900/?tech,street"
-                                                    alt=" Lorem Ipsum Sit Amet Consectetur dipisi?">
-                                                <div class="card-img-overlay d-flex flex-column">
-                                                    <div class="card-body">
-                                                        <small class="card-meta mb-2">Thought Leadership</small>
-                                                        <h4 class="card-title mt-0 "><a class="text-dark"
-                                                                herf="https://creativemanner.com">UI/UX Design Lorem
-                                                                Ipsum Sit Amet Consectetur dipisi?</a></h4>
-                                                        <small><i class="far fa-clock"></i> October 15, 2020</small>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <div class="media">
-                                                            <img class="mr-3 rounded-circle"
-                                                                src="https://avatars.githubusercontent.com/u/37215681?s=400&u=e793b96cb9a61bb677ab8df98a3e3de4cf93da44&v=4"
-                                                                alt="Generic placeholder image" style="max-width:50px">
-                                                            <div class="media-body">
-                                                                <h6 class="my-0 text-dark d-block">turma</h6>
-                                                                <small>Projeto</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                            <div class="card text-dark card-has-bg click-col"
-                                                style="background-image:url('https://source.unsplash.com/600x900/?tree,nature');">
-                                                <img class="card-img d-none"
-                                                    src="https://source.unsplash.com/600x900/?tree,nature"
-                                                    alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
-                                                <div class="card-img-overlay d-flex flex-column">
-                                                    <div class="card-body">
-                                                        <small class="card-meta mb-2">Thought Leadership</small>
-                                                        <h4 class="card-title mt-0 "><a class="text-dark"
-                                                                herf="https://creativemanner.com">Creative Manner Design
-                                                                Lorem Ipsum Sit Amet Consectetur dipisi?</a></h4>
-                                                        <small><i class="far fa-clock"></i> October 15, 2020</small>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <div class="media">
-                                                            <img class="mr-3 rounded-circle"
-                                                                src="https://avatars.githubusercontent.com/u/37215681?s=400&u=e793b96cb9a61bb677ab8df98a3e3de4cf93da44&v=4"
-                                                                alt="Generic placeholder image" style="max-width:50px">
-                                                            <div class="media-body">
-                                                                <h6 class="my-0 text-dark d-block">turma</h6>
-                                                                <small>Projeto</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                            <div class="card text-dark card-has-bg click-col"
-                                                style="background-image:url('https://source.unsplash.com/600x900/?computer,design');">
-                                                <img class="card-img d-none"
-                                                    src="https://source.unsplash.com/600x900/?computer,design"
-                                                    alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
-                                                <div class="card-img-overlay d-flex flex-column">
-                                                    <div class="card-body">
-                                                        <small class="card-meta mb-2">Thought Leadership</small>
-                                                        <h4 class="card-title mt-0 "><a class="text-dark"
-                                                                herf="https://creativemanner.com">Creative Manner Design
-                                                                Lorem Ipsum Sit Amet Consectetur dipisi?</a></h4>
-                                                        <small><i class="far fa-clock"></i> October 15, 2020</small>
-                                                    </div>
-                                                    <div class="card-footer">
-                                                        <div class="media">
-                                                            <img class="mr-3 rounded-circle"
-                                                                src="https://avatars.githubusercontent.com/u/37215681?s=400&u=e793b96cb9a61bb677ab8df98a3e3de4cf93da44&v=4"
-                                                                alt="Generic placeholder image" style="max-width:50px">
-                                                            <div class="media-body">
-                                                                <h6 class="my-0 text-dark d-block">turma</h6>
-                                                                <small>Projeto</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
                                     </div>
 
+
+
+
+
+
+
+
                                 </div>
-                            </section>
+
+
+                            </div>
+                        </section>
 
                     </div>
 
@@ -434,82 +498,221 @@ https://templatemo.com/tm-583-festava-live
                     <div class="col-12 text-center">
                         <h2 class="text-white mb-4">Minha trajetória</h1>
 
-                            <div class="table-responsive">
-                                <div class="gallery-container">
+                            
+ <div id="lightgallery">
 
-                                    <div class="gallery-item" data-index="1">
-                                        <img src="images/turmas/1 Assistente administrativo Marilena.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="2">
-                                        <img src="images/turmas/2 Assistente Administrativo Santa Cruz de Monte Castelo.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="3">
-                                        <img src="images/turmas/3 Introdução a informática.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="4">
-                                        <img src="images/turmas/4 Marketing Digital Santa Cruz de Monte Castelo.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="5">
-                                        <img src="images/turmas/5 Programador De sistemas 1.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="6">
-                                        <img src="images/turmas/6 Técnico de Informática para internet 2023.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="7">
-                                        <img src="images/turmas/curso impressora 3d.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="8">
-                                        <img src="images/turmas/Formatura Técnico informática.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="9">
-                                        <img src="images/turmas/ps2.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="10">
-                                        <img src="images/turmas/Turma de RH.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="11">
-                                        <img src="images/turmas/projeto ifteh.png">
-                                    </div>
-                                    <div class="gallery-item" data-index="12">
-                                        <img src="images/turmas/Programador de sistemas 11.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="13">
-                                        <img src="images/turmas/assistente da tecnologia.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="14">
-                                        <img src="images/turmas/faculdade.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="15">
-                                        <img src="images/turmas/infomania2.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="16">
-                                        <img src="images/turmas/infomania3.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="17">
-                                        <img src="images/turmas/marketing digital 1.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="18">
-                                        <img src="images/turmas/pascom1.jpg">
-                                    </div>
-                                    <div class="gallery-item" data-index="19">
-                                        <img src="images/turmas/pascom2.JPG">
-                                    </div>
-                                    <div class="gallery-item" data-index="20">
-                                        <img src="images/turmas/1 lugar.png">
-                                    </div>
-                                    <div class="gallery-item" data-index="21">
-                                        <img src="images/turmas/projeto.png">
-                                    </div>
-                                    <div class="gallery-item" data-index="22">
-                                        <img src="images/turmas/ps22.jpg">
-                                    </div>
-                                </div>
-                                
+    
 
-                                
+    <a href="images/turmas/1 Assistente administrativo Marilena.jpg">
+      <img src="images/turmas/1 Assistente administrativo Marilena.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/2 Assistente Administrativo Santa Cruz de Monte Castelo.jpg">
+      <img src="images/turmas/2 Assistente Administrativo Santa Cruz de Monte Castelo.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/3 Introdução a informática.jpg">
+      <img src="images/turmas/3 Introdução a informática.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/4 Marketing Digital Santa Cruz de Monte Castelo.jpg">
+      <img src="images/turmas/4 Marketing Digital Santa Cruz de Monte Castelo.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/5 Programador De sistemas 1.jpg">
+      <img src="images/turmas/5 Programador De sistemas 1.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/6 Técnico de Informática para internet 2023.jpg">
+      <img src="images/turmas/6 Técnico de Informática para internet 2023.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/curso impressora 3d.jpg">
+      <img src="images/turmas/curso impressora 3d.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/Formatura Técnico informática.jpg">
+      <img src="images/turmas/Formatura Técnico informática.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/ps2.jpg">
+      <img src="images/turmas/ps2.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/Turma de RH.jpg">
+      <img src="images/turmas/Turma de RH.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/projeto ifteh.png">
+      <img src="images/turmas/projeto ifteh.png" alt="">
+    </a>
+
+    <a href="images/turmas/Programador de sistemas 11.jpg">
+      <img src="images/turmas/Programador de sistemas 11.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/assistente da tecnologia.jpg">
+      <img src="images/turmas/assistente da tecnologia.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/faculdade.jpg">
+      <img src="images/turmas/faculdade.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/infomania2.jpg">
+      <img src="images/turmas/infomania2.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/infomania3.jpg">
+      <img src="images/turmas/infomania3.jpg" alt="">
+    </a>
+
+      <a href="images/turmas/2airport.jpg">
+    <img src="images/turmas/2airport.jpg" alt="2airport">
+  </a>
+
+  <a href="images/turmas/2diainstrutores.jpg">
+    <img src="images/turmas/2diainstrutores.jpg" alt="2diainstrutores">
+  </a>
+
+  <a href="images/turmas/2formatura.jpg">
+    <img src="images/turmas/2formatura.jpg" alt="2formatura">
+  </a>
+
+  <a href="images/turmas/2formatura2.jpg">
+    <img src="images/turmas/2formatura2.jpg" alt="2formatura2">
+  </a>
+
+  <a href="images/turmas/2gincana.jpg">
+    <img src="images/turmas/2gincana.jpg" alt="2gincana">
+  </a>
+
+  <a href="images/turmas/2impressora3d.HEIC">
+    <img src="images/turmas/2impressora3d.HEIC" alt="2impressora3d">
+  </a>
+
+  <a href="images/turmas/2magisterio.jpg">
+    <img src="images/turmas/2magisterio.jpg" alt="2magisterio">
+  </a>
+
+  <a href="images/turmas/2olhaoflash.jpg">
+    <img src="images/turmas/2olhaoflash.jpg" alt="2olhaoflash">
+  </a>
+
+  <a href="images/turmas/2palestra.jpg">
+    <img src="images/turmas/2palestra.jpg" alt="2palestra">
+  </a>
+
+  <a href="images/turmas/2programador.jpg">
+    <img src="images/turmas/2programador.jpg" alt="2programador">
+  </a>
+
+  <a href="images/turmas/2programador2.jpg">
+    <img src="images/turmas/2programador2.jpg" alt="2programador2">
+  </a>
+
+  <a href="images/turmas/2programador3.jpg">
+    <img src="images/turmas/2programador3.jpg" alt="2programador3">
+  </a>
+
+  <a href="images/turmas/2retiro.jpg">
+    <img src="images/turmas/2retiro.jpg" alt="2retiro">
+  </a>
+
+  <a href="images/turmas/2rio1.jpg">
+    <img src="images/turmas/2rio1.jpg" alt="2rio1">
+  </a>
+
+  <a href="images/turmas/2rio2.PNG">
+    <img src="images/turmas/2rio2.PNG" alt="2rio2">
+  </a>
+
+  <a href="images/turmas/2rio3.jpg">
+    <img src="images/turmas/2rio3.jpg" alt="2rio3">
+  </a>
+
+  <a href="images/turmas/2rio4.jpg">
+    <img src="images/turmas/2rio4.jpg" alt="2rio4">
+  </a>
+
+  <a href="images/turmas/2rio5.jpg">
+    <img src="images/turmas/2rio5.jpg" alt="2rio5">
+  </a>
+
+  <a href="images/turmas/2senac.jpg">
+    <img src="images/turmas/2senac.jpg" alt="2senac">
+  </a>
+
+  <a href="images/turmas/2senacarcade.PNG">
+    <img src="images/turmas/2senacarcade.PNG" alt="2senacarcade">
+  </a>
+
+  <a href="images/turmas/2senacconcursodesenho.jpg">
+    <img src="images/turmas/2senacconcursodesenho.jpg" alt="2senacconcursodesenho">
+  </a>
+
+  <a href="images/turmas/2sintec.jpg">
+    <img src="images/turmas/2sintec.jpg" alt="2sintec">
+  </a>
 
 
-                            </div>
+
+
+
+    <a href="images/turmas/marketing digital 1.jpg">
+      <img src="images/turmas/marketing digital 1.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/pascom1.jpg">
+      <img src="images/turmas/pascom1.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/pascom2.JPG">
+      <img src="images/turmas/pascom2.JPG" alt="">
+    </a>
+
+    <a href="images/turmas/1 lugar.png">
+      <img src="images/turmas/1 lugar.png" alt="">
+    </a>
+
+    <a href="images/turmas/projeto.png">
+      <img src="images/turmas/projeto.png" alt="">
+    </a>
+
+    <a href="images/turmas/ps22.jpg">
+      <img src="images/turmas/ps22.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/kitperiodico.jpg">
+      <img src="images/turmas/kitperiodico.jpg" alt="">
+    </a>
+
+    <a href="images/turmas/tecinf2024.jpg">
+      <img src="images/turmas/tecinf2024.jpg" alt="">
+    </a>
+
+    
+
+  </div>
+
+  <!-- LightGallery JS -->
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
+
+  <script>
+    lightGallery(document.getElementById('lightgallery'), {
+      plugins: [lgZoom, lgThumbnail],
+      speed: 400,
+      download: false
+    });
+  </script>
+
+
+
+
+
+                          
                     </div>
                 </div>
             </div>
@@ -520,9 +723,22 @@ https://templatemo.com/tm-583-festava-live
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-8 col-12 mx-auto">
-                        <h2 class="text-center mb-4">Plans, you' love</h2>
-                    </div>
+                    <!-- <div class="col-lg-8 col-12 mx-auto"> -->
+                    <h2 class="text-center mb-4"> <a href="https://github.com/LuizGustavo10" target="_blank"
+                            class="btn btn-lg btn-success">Acessar github <i class="bi bi-github"></i></a></h2>
+                    <img class="git" src="images/github.png" alt="">
+
+
+                    <h2 class="text-center mb-4"> <a
+                            href="https://padlet.com/gustavo180g/perguntas-sobre-eletricidade-wzyf7tshw6a3dwcw"
+                            target="_blank" class="btn btn-lg btn-success">Acessar meu canal <i
+                                class="bi bi-youtube"></i></a></h2>
+
+
+                    <img class="git" src="images/youtube.png" alt="">
+
+
+                    <!-- </div> -->
 
 
                 </div>
@@ -652,7 +868,7 @@ https://templatemo.com/tm-583-festava-live
         <div class="container">
             <div class="row">
 
-                <div class="col-lg-6 col-12 mb-4 pb-2">
+                <!-- <div class="col-lg-6 col-12 mb-4 pb-2">
                     <h5 class="site-footer-title mb-3">Links</h5>
 
                     <ul class="site-footer-links">
@@ -680,9 +896,9 @@ https://templatemo.com/tm-583-festava-live
                             <a href="#" class="site-footer-link">Contact</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
-                <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+                <!-- <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                     <h5 class="site-footer-title mb-3">Have a question?</h5>
 
                     <p class="text-white d-flex mb-1">
@@ -716,35 +932,35 @@ https://templatemo.com/tm-583-festava-live
                     </a>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="site-footer-bottom">
-            <div class="container">
-                <div class="row">
+                <div class="site-footer-bottom">
+                    <div class="container">
+                        <div class="row">
 
-                    <div class="col-lg-3 col-12 mt-5">
-                        <p class="copyright-text">Copyright Luiz 2024</p>
-                       
-                    </div>
+                            <div class="col-lg-3 col-12 mt-5">
+                                <p class="copyright-text">Copyright Luiz 2024</p>
 
-                    <div class="col-lg-8 col-12 mt-lg-5">
-                        <ul class="site-footer-links">
-                            <li class="site-footer-link-item">
-                                <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
-                            </li>
+                            </div>
 
-                            <li class="site-footer-link-item">
-                                <a href="#" class="site-footer-link">Privacy Policy</a>
-                            </li>
+                            <div class="col-lg-8 col-12 mt-lg-5">
+                                <ul class="site-footer-links">
+                                    <li class="site-footer-link-item">
+                                        <a href="#" class="site-footer-link">Terms &amp; Conditions</a>
+                                    </li>
 
-                            <li class="site-footer-link-item">
-                                <a href="#" class="site-footer-link">Your Feedback</a>
-                            </li>
-                        </ul>
+                                    <li class="site-footer-link-item">
+                                        <a href="#" class="site-footer-link">Privacy Policy</a>
+                                    </li>
+
+                                    <li class="site-footer-link-item">
+                                        <a href="#" class="site-footer-link">Your Feedback</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
     </footer>
 
     <!--
@@ -752,6 +968,13 @@ https://templatemo.com/tm-583-festava-live
 T e m p l a t e M o
 
 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9057404490431623"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript"
+        src="https://counter4.optistats.ovh/private/counter.js?c=lfmjzmfft8qqjzenqdxygj1lb6dbbtq4&down=async"
+        async></script>
+
 
     <!-- JAVASCRIPT FILES -->
     <script src="js/jquery.min.js"></script>
@@ -759,8 +982,13 @@ T e m p l a t e M o
     <script src="js/jquery.sticky.js"></script>
     <script src="js/click-scroll.js"></script>
     <script src="js/custom.js"></script>
-   
+    <script src="js/particle.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/2.0.0/scrollReveal.js"
+        integrity="sha512-C5vaj0THdudBZn7DvfkEb/Bt12RDCn2oPOyWN1bsH6NPSw4xJ1eA8NE5QsgURl6cCAd7pvvqtrums8iGcoJU6g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script> ScrollReveal().reveal('div');</script>
 </body>
 
 </html>

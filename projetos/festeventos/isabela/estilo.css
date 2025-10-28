@@ -1,0 +1,95 @@
+.menu{
+    background: linear-gradient(to right, rgb(4, 6, 122), rgb(2, 2, 221));
+
+.bory{
+    font-family: 'Suez One' !important;
+}
+}
+.whats{
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    right: 20px;
+    bottom: 20px;
+    background-color: green;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+}
+.whats:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #25d366;
+    transform: scale(1.1);
+    transition: 1s;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto; /* Centraliza horizontalmente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.header-title{
+    color: rgb(1, 1, 170);
+}
+
+/* Botão Instagram */
+.btn-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 10px 20px;
+  border: none;
+  transition: opacity 0.3s ease;
+}
+.btn-instagram:hover {
+  opacity: 0.85;
+  color: white;
+}
+
+/* Botão Facebook */
+.btn-facebook {
+  background-color: #3b5998;
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 10px 20px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.btn-facebook:hover {
+  background-color: #2d4373;
+  color: white;
+}
+
+/* Botão LinkedIn */
+.btn-linkedin {
+  background-color: #0077b5;
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 10px 20px;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.btn-linkedin:hover {
+  background-color: #005983;
+  color: white;
+}
+
+.texto-redes{
+  text-align: center;
+  color: rgba(0, 0, 0, 0.404);
+}
+

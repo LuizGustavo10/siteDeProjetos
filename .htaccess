@@ -1,0 +1,6 @@
+
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^ferramentasprogramacao\.com\.br$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.ferramentasprogramacao\.com\.br$
+RewriteRule ^/?$ "https\:\/\/www\.ferramentasprogramacao\.com\.br\/ferramentasprog\/prog\.html" [R=301,L]
+

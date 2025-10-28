@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Fest Eventos </title>
+
+  <style>
+    /*configuração do swiper slide*/
+    html,
+    body {
+      position: relative;
+      height: 100%;
+    }
+
+    body {
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-image: url(fundo\ do\ site.png) ;
+      background-size:cover;
+    }
+    .whats{
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    right: 20px;
+    bottom: 20px;
+    background-color: green;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.4);
+}
+    .whats:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #22a390;
+    transform: scale(1.1);
+    transition: 1s;
+}
+
+
+    .mosaico {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .item:hover img {
+      transform: scale(1.03);
+    }
+
+    .legenda {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, black, rgba(0, 0, 0, 0.233));
+      color: white;
+      padding: 10px;
+      font-size: 1rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      height: 40px;
+    }
+    .menu{
+    /* background: linear-gradient(to right, rgb(52, 176, 248),  rgb(76, 99, 205)); */
+    background: linear-gradient(to right, rgba(4, 6, 122, 0.945),  rgba(2, 2, 221, 0.945), rgba(4, 6, 122, 0.892));
+}
+
+    .item:hover .legenda {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .mosaico {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mosaico {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* fim da configuração do swiper slide*/
+  </style>
+
+  <!-- importações usadas -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/2.0.0/scrollReveal.js"
+    integrity="sha512-C5vaj0THdudBZn7DvfkEb/Bt12RDCn2oPOyWN1bsH6NPSw4xJ1eA8NE5QsgURl6cCAd7pvvqtrums8iGcoJU6g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="icon" href="https://images.icon-icons.com/290/PNG/512/flight_30822.png">
+  <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+  
+  <!-- barra de navegação ------------------------------------------------------------------------------>
+  <!-- barra de navegação ------------------------------------------------------------------------------>
+  <nav class="navbar navbar-expand-lg navbar-dark menu fixed-top">
+    <img src="../fotos/logo.png" width="60" class="animate__animated animate__fadeIn">
+    <a class="navbar-brand animate__animated animate__fadeIn" href="../index.html">Fest Eventos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+      aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"> 
+          <a class="nav-link" href="../destinos/galeria.html"> Destinos <span class="sr-only">(página atual)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="../isabela/eventos.html"> Eventos </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="../sobre/sobre.html"> Sobre </a>
+        </li>
+
+        <li class="nav-item active dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Contato
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="../isabela/index.html"> Fale Conosco </a>
+            <a class="dropdown-item" href="../isabela/index.html"> Trabalhe Conosco </a>
+            <a class="dropdown-item" href="../Parceiro/index.html"> Seja Nosso Parceiro </a>
+          </div>
+        </li>
+
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pesquisar</button>
+      </form>
+    </div>
+  </nav>
+
+  <br><br><br><br>
+  <h1 style="text-align:center; color: whitesmoke;">Próximos Destinos</h1>
+  <br>
+
+  
+  <div class="mosaico"> 
+    <a href="../DestEspecifico/iguaçu.html">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/Cataratas do Iguaçu.webp" alt="Cataratas do Iguaçu">
+      <div class="legenda">Cataratas do Iguaçu</div>
+    </div>
+    </a>
+    <a href="../DestEspecifico/salto.html">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/Salto Bandeirantes.jpg" alt="Praia Tropical">
+      <div class="legenda">Salto Bandeirante</div>
+    </div>
+    </a>
+    
+    <a href="../DestEspecifico/maringa.html">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/Maringá.png" alt="Deserto do Saara">
+      <div class="legenda">Maringá</div>
+    </div>
+  </a>
+  <a href="#">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/SESC- Caiobá.png" alt="Paris">
+      <div class="legenda">Sesc - Caiobá</div>
+    </div>
+    </a>
+    
+    <a href="../DestEspecifico/Matinhos.html">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/Matinhos.jpg" alt="Aurora Boreal">
+      <div class="legenda">Matinhos</div>
+    </div>
+    </a>
+    <a href="../DestEspecifico/ilhadomel.html">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Ilha do Mel.jpg" alt="Japão">
+      <div class="legenda">Ilha do Mel</div>
+    </div>
+    </a>
+    <a href="#">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Éden.jpeg" alt="Nova York">
+      <div class="legenda">Éden Para Casamentos</div>
+    </div>
+    </a>
+    
+    <a href="../DestEspecifico/curitiba.html">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Parque Botanico, Curitiba.webp" alt="Dubai">
+      <div class="legenda">Jardim Botanico, Curitiba</div>
+    </div>
+    </a>
+    
+    <a href="../DestEspecifico/porto.html">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Porto Maringá.jpeg" alt="Londres">
+      <div class="legenda">Porto Maringá</div>
+    </div>
+    </a>
+  </div>
+  
+
+  <!-- RODAPÉ  ---------------------------------------------------------------------->
+  <br><br>
+  <footer class="bg-dark text-light py-5 menu">
+    <div class="row justify-content-center ml-4">
+
+      <div class="col-md-4">
+        <h5> Navegação </h5>
+        <ul class="list-unstyled">
+          <li> <a href="#" class="text-decoration-none text-light"> Sobre nós </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> Eventos </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> Viagens </a> </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <h5> Contato </h5>
+        <ul class="list-unstyled">
+          <li> <a href="#" class="text-decoration-none text-light"> Fale conosco </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> Trabalhe conosco </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> Seja nosso parceiro </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> Instagram </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> Facebook </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> Linkedin </a> </li>
+
+          <br><br><br>
+          <li> <a class="text-decoration-none text-light">
+
+            <h5> Número de Visitantes</h5>
+          <div id="sfc2jjupfrq6n9yxwxny7l4k9ugezxqzg3n"></div>
+          <script type="text/javascript"
+            src="https://counter1.optistats.ovh/private/counter.js?c=2jjupfrq6n9yxwxny7l4k9ugezxqzg3n&down=async"
+            async></script>
+
+            </a> </li>
+        </ul>
+      </div>
+
+      <div class="col-md-4">
+        <h5> Informações </h5>
+        <ul class="list-unstyled">
+          <li> <a href="#" class="text-decoration-none text-light"> Razão social: Fest Eventos LTDA </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> CNPJ: 00.000.000/0000-00 </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> Av. Fioravante J Montanher, 576 </a> </li>
+          <li> <a href="#" class="text-decoration-none text-light"> Nova Londrina - PR </a> </li>
+
+        </ul>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- botão whatsapp  ------------------------------------------------------------------------------------------->
+  <a href="https://wa.me/+5544999237694?text=Olá,%20gostaria%20de%20mais%20informações" class="whats">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- ACESSIBILIDADE  ---------------------------------------------------------------------->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+
+  <!-- SCRIPTS JS DO PROJETO  ---------------------------------------------------------------------->
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+    
+  </script>
+
+</body>
+
+</html>

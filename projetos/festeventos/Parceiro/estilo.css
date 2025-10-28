@@ -1,0 +1,40 @@
+menu{
+    background: linear-gradient(to right, rgb(4,6,122), rgb(2,2,221),rgb(4,6,122));
+    
+}
+
+.whatsapp{
+        position: fixed;
+        z-index: 1000;
+        width: 60px;
+        height: 60px;
+        right: 15px;
+        bottom: 15px;
+        background-color: green;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        font-size: 35px;
+    }
+      
+.whatsapp:hover{
+        background-color: rgb(0, 156, 0);
+        text-decoration: none;
+        color:white;
+        transform: scale(1.1);
+        transition: 0,8s;
+    }
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

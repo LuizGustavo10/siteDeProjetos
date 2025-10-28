@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Próximos Destinos</title>
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+      background-image: url(fundo\ do\ site.png) ;
+      background-size:cover;
+    }
+
+    .mosaico {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .item:hover img {
+      transform: scale(1.03);
+    }
+
+    .legenda {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, black, rgba(0, 0, 0, 0.233));
+      color: white;
+      padding: 10px;
+      font-size: 1rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+      height: 20px;
+    }
+
+    .item:hover .legenda {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .mosaico {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mosaico {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align:center; color: whitesmoke;">Próximos Destinos</h1>
+
+  <div class="mosaico"> 
+    <a href="#">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/Cataratas do Iguaçu.webp" alt="Cataratas do Iguaçu">
+      <div class="legenda">Cataratas do Iguaçu</div>
+    </div>
+    </a>
+    <a href="#">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/Salto Bandeirantes.jpg" alt="Praia Tropical">
+      <div class="legenda">Salto Bandeirante</div>
+    </div>
+    </a>
+    
+    <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/Maringá.png" alt="Deserto do Saara">
+      <div class="legenda">Maringá</div>
+    </div>
+  </a>
+  <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/SESC- Caiobá.png" alt="Paris">
+      <div class="legenda">Sesc - Caiobá</div>
+    </div>
+    </a>
+    <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Parque Ingá.jpg" alt="Machu Picchu">
+      <div class="legenda">Parque Ingá</div>
+    </div>
+    </a>
+    <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="fotos/Matinhos.jpg" alt="Aurora Boreal">
+      <div class="legenda">Matinhos</div>
+    </div>
+    </a>
+    <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Ilha do Mel.jpg" alt="Japão">
+      <div class="legenda">Ilha do Mel</div>
+    </div>
+    </a>
+    <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Éden.jpeg" alt="Nova York">
+      <div class="legenda">Éden Para Casamentos</div>
+    </div>
+    </a>
+    <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Eurogarden.jpg" alt="Rio de Janeiro">
+      <div class="legenda">Eurogarden</div>
+    </div>
+    </a>
+    <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Parque Botanico, Curitiba.webp" alt="Dubai">
+      <div class="legenda">Jardim Botanico, Curitiba</div>
+    </div>
+    </a>
+    <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="500">
+      <img src="Fotos/Parque do Japão.jpg" alt="Roma">
+      <div class="legenda">Parque do Japão</div>
+    </div>
+    </a>
+    <a href="">
+    <div class="item" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-perspective="1000">
+      <img src="Fotos/Porto Maringá.jpeg" alt="Londres">
+      <div class="legenda">Porto Maringá</div>
+    </div>
+    </a>
+  </div>
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" integrity="sha512-wC/cunGGDjXSl9OHUH0RuqSyW4YNLlsPwhcLxwWW1CR4OeC2E1xpcdZz2DeQkEmums41laI+eGMw95IJ15SS3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

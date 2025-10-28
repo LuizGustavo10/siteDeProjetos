@@ -1,0 +1,62 @@
+.menu{
+    /* background: linear-gradient(to right, rgb(52, 176, 248),  rgb(76, 99, 205)); */
+    background: linear-gradient(to right, rgba(4, 6, 122, 0.945),  rgba(2, 2, 221, 0.945), rgba(4, 6, 122, 0.892));
+}
+
+.whats{
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    right: 20px;
+    bottom: 20px;
+    background-color: green;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    box-shadow: 2px 5px 5px rgba(97, 91, 91, 0.4);
+    text-decoration: none;
+}
+.whats:hover{
+    text-decoration: none;
+    color: white;
+    background-color: #25d366;
+    transform: scale(1.1);
+    transition: 1s;
+}
+
+.btn-filtro {
+  margin: 0 5px;
+  border-radius: 25px;
+  font-weight: bold;
+  padding: 8px 20px;
+  border: 2px solid #d09333;
+  background-color: white;
+  color: #b0b0b0; /* texto cinza claro */
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.btn-filtro:hover {
+  transform: scale(1.05); /* efeito de zoom suave */
+  color: #b0b0b0; /* mantém o cinza claro no hover */
+}
+
+.btn-filtro.active {
+  background-color: #d09333 !important; /* fundo amarelo alaranjado */
+  color: rgba(241, 186, 4, 0) !important; /* texto branco */
+  border: 2px solid #d09333 !important;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+

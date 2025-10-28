@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Surpresa Final</title>
+  <style>
+    body {
+      text-align: center;
+      padding-top: 100px;
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+    }
+    #impacto {
+      display: none;
+      font-size: 2.5em;
+      color: #28a745;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- DIGITE O CÓDIGO AQUI-->
+
+<div id="codigoMagico">SENAC</div>
+
+
+  <h1>Parabéns, você chegou até aqui!</h1>
+  <p>Use o editor para adicionar o código secreto ao HTML e desbloquear a surpresa final.</p>
+
+  <div id="impacto">🎉 Surpresa desbloqueada! 🎉</div>
+
+  <!-- Confetti script -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script>
+    function checarSeCodigoFoiInserido() {
+      const codigo = document.getElementById("codigoMagico");
+      if (codigo && codigo.innerText.trim().toUpperCase() === "SENAC") {
+        mostrarImpacto();
+      }
+    }
+
+    function mostrarImpacto() {
+      const impacto = document.getElementById("impacto");
+      impacto.style.display = "block";
+      document.body.style.backgroundColor = "#d2ffe5";
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+      new Audio("Aplausos.mp3").play();
+    }
+
+    // Verifica continuamente se o código foi inserido no HTML
+    setInterval(checarSeCodigoFoiInserido, 1000);
+  </script>
+
+</body>
+</html>

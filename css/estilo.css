@@ -1,0 +1,134 @@
+.cardImg{
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 80px;
+    height: 80px;
+}
+
+.corPrimaria{
+    color: #05c295 !important;
+}
+
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  
+}
+
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin-block: 2rem;
+  gap: 2rem;
+  color: white !important;
+
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: calc(24% - 1rem);
+  overflow: hidden;
+  box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  background: #0a0a0a;
+        background: linear-gradient(to right, #2d303a, #110451);
+        color: white !important;
+    border: 1px solid rgb(77, 73, 73);
+
+}
+
+
+
+.card__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  color:rgb(255, 255, 255) !important;
+
+}
+
+
+.tag {
+  align-self: flex-start;
+  padding: .25em .75em;
+  border-radius: 1em;
+  font-size: .75rem;
+  
+}
+
+.tag + .tag {
+  margin-left: .5em;
+}
+
+.tag-blue {
+  background: #56CCF2;
+background: linear-gradient(to bottom, #2F80ED, #56CCF2);
+  color: #fafafa;
+}
+
+.tag-brown {
+  background: #D1913C;
+background: linear-gradient(to bottom, #FFD194, #D1913C);
+  color: #fafafa;
+}
+
+.tag-red {
+  background: #cb2d3e;
+background: linear-gradient(to bottom, #ef473a, #cb2d3e);
+  color: #fafafa;
+}
+
+.card__body h4 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: white;
+
+}
+
+.card__footer {
+  display: flex;
+  padding: 1rem;
+  margin-top: auto;
+  color: white;
+
+}
+
+.user {
+  display: flex;
+  gap: .5rem;
+  color: white;
+
+}
+
+.user__image {
+  border-radius: 50%;
+}
+
+.user__info > small {
+  color: #666;
+}
+
+/* Media Query para telas menores */
+@media (max-width: 768px) {
+    .card {
+      width: calc(100% - 1rem); /* 1 card por linha em telas pequenas */
+    }
+  }
