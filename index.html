@@ -30,6 +30,53 @@
  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css">
 
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 por linha no desktop */
+    gap: 12px;
+  }
+
+  .gallery a {
+    display: block;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gallery img {
+    width: 100%;
+    height: 100%;           /* tamanho padrão */
+    object-fit: cover;       /* corta sem distorcer */
+    display: block;
+    transition: transform .2s ease;
+  }
+
+  .gallery a:hover img {
+    transform: scale(1.03);
+  }
+
+  /* em telas menores, diminui a altura */
+  @media (max-width: 480px) {
+    .gallery img {
+      height: 140px;
+      
+    }
+      .gallery {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 4 por linha no desktop */
+    gap: 12px;
+  }
+  }
+</style>
+
+<!-- 
+
   <style>
       #lightgallery {
       column-count: 4;
@@ -74,7 +121,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     }
   </style>
-  </style>
+  </style> -->
 
 </head>
 
@@ -506,197 +553,191 @@
                         <h2 class="text-white mb-4">Minha trajetória</h1>
 
                             
- <div id="lightgallery">
+ <div id="gallery" class="gallery">
 
-    
+     <a href="images/turmas/1 Assistente administrativo Marilena.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/1 Assistente administrativo Marilena.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/1 Assistente administrativo Marilena.jpg">
-      <img src="images/turmas/1 Assistente administrativo Marilena.jpg" alt="">
-    </a>
+  <a href="images/turmas/2 Assistente Administrativo Santa Cruz de Monte Castelo.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/2 Assistente Administrativo Santa Cruz de Monte Castelo.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/2 Assistente Administrativo Santa Cruz de Monte Castelo.jpg">
-      <img src="images/turmas/2 Assistente Administrativo Santa Cruz de Monte Castelo.jpg" alt="">
-    </a>
+  <a href="images/turmas/3 Introdução a informática.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/3 Introdução a informática.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/3 Introdução a informática.jpg">
-      <img src="images/turmas/3 Introdução a informática.jpg" alt="">
-    </a>
+  <a href="images/turmas/4 Marketing Digital Santa Cruz de Monte Castelo.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/4 Marketing Digital Santa Cruz de Monte Castelo.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/4 Marketing Digital Santa Cruz de Monte Castelo.jpg">
-      <img src="images/turmas/4 Marketing Digital Santa Cruz de Monte Castelo.jpg" alt="">
-    </a>
+  <a href="images/turmas/5 Programador De sistemas 1.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/5 Programador De sistemas 1.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/5 Programador De sistemas 1.jpg">
-      <img src="images/turmas/5 Programador De sistemas 1.jpg" alt="">
-    </a>
+  <a href="images/turmas/6 Técnico de Informática para internet 2023.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/6 Técnico de Informática para internet 2023.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/6 Técnico de Informática para internet 2023.jpg">
-      <img src="images/turmas/6 Técnico de Informática para internet 2023.jpg" alt="">
-    </a>
+  <a href="images/turmas/curso impressora 3d.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/curso impressora 3d.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/curso impressora 3d.jpg">
-      <img src="images/turmas/curso impressora 3d.jpg" alt="">
-    </a>
+  <a href="images/turmas/Formatura Técnico informática.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/Formatura Técnico informática.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/Formatura Técnico informática.jpg">
-      <img src="images/turmas/Formatura Técnico informática.jpg" alt="">
-    </a>
+  <a href="images/turmas/ps2.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/ps2.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/ps2.jpg">
-      <img src="images/turmas/ps2.jpg" alt="">
-    </a>
+  <a href="images/turmas/Turma de RH.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/Turma de RH.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/Turma de RH.jpg">
-      <img src="images/turmas/Turma de RH.jpg" alt="">
-    </a>
+  <a href="images/turmas/projeto ifteh.png" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/projeto ifteh.png" alt="">
+  </a>
 
-    <a href="images/turmas/projeto ifteh.png">
-      <img src="images/turmas/projeto ifteh.png" alt="">
-    </a>
+  <a href="images/turmas/Programador de sistemas 11.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/Programador de sistemas 11.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/Programador de sistemas 11.jpg">
-      <img src="images/turmas/Programador de sistemas 11.jpg" alt="">
-    </a>
+  <a href="images/turmas/assistente da tecnologia.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/assistente da tecnologia.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/assistente da tecnologia.jpg">
-      <img src="images/turmas/assistente da tecnologia.jpg" alt="">
-    </a>
+  <a href="images/turmas/faculdade.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/faculdade.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/faculdade.jpg">
-      <img src="images/turmas/faculdade.jpg" alt="">
-    </a>
+  <a href="images/turmas/infomania2.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/infomania2.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/infomania2.jpg">
-      <img src="images/turmas/infomania2.jpg" alt="">
-    </a>
+  <a href="images/turmas/infomania3.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/infomania3.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/infomania3.jpg">
-      <img src="images/turmas/infomania3.jpg" alt="">
-    </a>
-
-      <a href="images/turmas/2airport.jpg">
+  <a href="images/turmas/2airport.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2airport.jpg" alt="2airport">
   </a>
 
-  <a href="images/turmas/2diainstrutores.jpg">
+  <a href="images/turmas/2diainstrutores.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2diainstrutores.jpg" alt="2diainstrutores">
   </a>
 
-  <a href="images/turmas/2formatura.jpg">
+  <a href="images/turmas/2formatura.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2formatura.jpg" alt="2formatura">
   </a>
 
-  <a href="images/turmas/2formatura2.jpg">
+  <a href="images/turmas/2formatura2.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2formatura2.jpg" alt="2formatura2">
   </a>
 
-  <a href="images/turmas/2gincana.jpg">
+  <a href="images/turmas/2gincana.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2gincana.jpg" alt="2gincana">
   </a>
 
-  <a href="images/turmas/2impressora3d.HEIC">
+  <a href="images/turmas/2impressora3d.HEIC" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2impressora3d.HEIC" alt="2impressora3d">
   </a>
 
-  <a href="images/turmas/2magisterio.jpg">
+  <a href="images/turmas/2magisterio.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2magisterio.jpg" alt="2magisterio">
   </a>
 
-  <a href="images/turmas/2olhaoflash.jpg">
+  <a href="images/turmas/2olhaoflash.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2olhaoflash.jpg" alt="2olhaoflash">
   </a>
 
-  <a href="images/turmas/2palestra.jpg">
+  <a href="images/turmas/2palestra.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2palestra.jpg" alt="2palestra">
   </a>
 
-  <a href="images/turmas/2programador.jpg">
+  <a href="images/turmas/2programador.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2programador.jpg" alt="2programador">
   </a>
 
-  <a href="images/turmas/2programador2.jpg">
+  <a href="images/turmas/2programador2.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2programador2.jpg" alt="2programador2">
   </a>
 
-  <a href="images/turmas/2programador3.jpg">
+  <a href="images/turmas/2programador3.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2programador3.jpg" alt="2programador3">
   </a>
 
-  <a href="images/turmas/2retiro.jpg">
+  <a href="images/turmas/2retiro.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2retiro.jpg" alt="2retiro">
   </a>
 
-  <a href="images/turmas/2rio1.jpg">
+  <a href="images/turmas/2rio1.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2rio1.jpg" alt="2rio1">
   </a>
 
-  <a href="images/turmas/2rio2.PNG">
+  <a href="images/turmas/2rio2.PNG" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2rio2.PNG" alt="2rio2">
   </a>
 
-  <a href="images/turmas/2rio3.jpg">
+  <a href="images/turmas/2rio3.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2rio3.jpg" alt="2rio3">
   </a>
 
-  <a href="images/turmas/2rio4.jpg">
+  <a href="images/turmas/2rio4.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2rio4.jpg" alt="2rio4">
   </a>
 
-  <a href="images/turmas/2rio5.jpg">
+  <a href="images/turmas/2rio5.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2rio5.jpg" alt="2rio5">
   </a>
 
-  <a href="images/turmas/2senac.jpg">
+  <a href="images/turmas/2senac.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2senac.jpg" alt="2senac">
   </a>
 
-  <a href="images/turmas/2senacarcade.PNG">
+  <a href="images/turmas/2senacarcade.PNG" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2senacarcade.PNG" alt="2senacarcade">
   </a>
 
-  <a href="images/turmas/2senacconcursodesenho.jpg">
+  <a href="images/turmas/2senacconcursodesenho.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2senacconcursodesenho.jpg" alt="2senacconcursodesenho">
   </a>
 
-  <a href="images/turmas/2sintec.jpg">
+  <a href="images/turmas/2sintec.jpg" class="glightbox" data-gallery="turmas">
     <img src="images/turmas/2sintec.jpg" alt="2sintec">
   </a>
 
+  <a href="images/turmas/marketing digital 1.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/marketing digital 1.jpg" alt="">
+  </a>
 
+  <a href="images/turmas/pascom1.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/pascom1.jpg" alt="">
+  </a>
 
-  
+  <a href="images/turmas/pascom2.JPG" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/pascom2.JPG" alt="">
+  </a>
 
-    <a href="images/turmas/marketing digital 1.jpg">
-      <img src="images/turmas/marketing digital 1.jpg" alt="">
-    </a>
+  <a href="images/turmas/1 lugar.png" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/1 lugar.png" alt="">
+  </a>
 
-    <a href="images/turmas/pascom1.jpg">
-      <img src="images/turmas/pascom1.jpg" alt="">
-    </a>
+  <a href="images/turmas/projeto.png" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/projeto.png" alt="">
+  </a>
 
-    <a href="images/turmas/pascom2.JPG">
-      <img src="images/turmas/pascom2.JPG" alt="">
-    </a>
+  <a href="images/turmas/ps22.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/ps22.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/1 lugar.png">
-      <img src="images/turmas/1 lugar.png" alt="">
-    </a>
+  <a href="images/turmas/kitperiodico.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/kitperiodico.jpg" alt="">
+  </a>
 
-    <a href="images/turmas/projeto.png">
-      <img src="images/turmas/projeto.png" alt="">
-    </a>
-
-    <a href="images/turmas/ps22.jpg">
-      <img src="images/turmas/ps22.jpg" alt="">
-    </a>
-
-    <a href="images/turmas/kitperiodico.jpg">
-      <img src="images/turmas/kitperiodico.jpg" alt="">
-    </a>
-
-    <a href="images/turmas/tecinf2024.jpg">
-      <img src="images/turmas/tecinf2024.jpg" alt="">
-    </a>
+  <a href="images/turmas/tecinf2024.jpg" class="glightbox" data-gallery="turmas">
+    <img src="images/turmas/tecinf2024.jpg" alt="">
+  </a>
 
     
 
@@ -995,6 +1036,26 @@ T e m p l a t e M o
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script> ScrollReveal().reveal('div');</script>
+
+
+
+<script>
+  GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+    zoomable: true
+  });
+</script>
+
+
+    <!-- SuplixIA Chat Widget -->
+<script
+  src="https://suplixia.com/widget/loader.js"
+  data-suplixia-kb="019bde00-cf8f-72ce-8f93-03eff4fc5949"
+  data-suplixia-url="https://suplixia.com"
+  defer>
+</script>
 </body>
 
 </html>
