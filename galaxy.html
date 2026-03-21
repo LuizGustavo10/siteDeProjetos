@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galáxias de Commits - LuizGustavo10</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #0b1020 0%, #050814 60%, #02040a 100%);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    #ui {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 14px 16px;
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      max-width: 360px;
+    }
+
+    #ui h1 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    #ui p {
+      font-size: 14px;
+      line-height: 1.4;
+      opacity: 0.9;
+      margin-bottom: 8px;
+    }
+
+    #tooltip {
+      position: fixed;
+      pointer-events: none;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      max-width: 300px;
+      display: none;
+      z-index: 20;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="ui">
+    <h1>Galáxias de Commits</h1>
+    <p><strong>Usuário:</strong> LuizGustavo10</p>
+    <p>Cada projeto é o núcleo. Cada commit é uma estrela em volta.</p>
+    <p id="status">Carregando repositórios...</p>
+  </div>
+
+  <div id="tooltip"></div>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    const username = "LuizGustavo10";
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const tooltip = document.getElementById("tooltip");
+    const statusEl = document.getElementById("status");
+
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+
+    const galaxies = [];
+    const starsForHover = [];
+    const backgroundStars = Array.from({ length: 180 }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      r: Math.random() * 1.6,
+      a: Math.random() * 0.8 + 0.2
+    }));
+
+    window.addEventListener("resize", () => {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
+      layoutGalaxies();
+    });
+
+    async function fetchJSON(url) {
+      const res = await fetch(url, {
+        headers: {
+          "Accept": "application/vnd.github+json"
+        }
+      });
+
+      if (!res.ok) {
+        throw new Error(`Erro ${res.status} ao buscar ${url}`);
+      }
+
+      return res.json();
+    }
+
+    async function loadData() {
+      try {
+        statusEl.textContent = "Buscando repositórios...";
+        const repos = await fetchJSON(
+          `https://api.github.com/users/${username}/repos?sort=updated&per_page=12`
+        );
+
+        const filteredRepos = repos.filter(repo => !repo.fork).slice(0, 8);
+
+        statusEl.textContent = "Buscando commits dos projetos...";
+
+        for (const repo of filteredRepos) {
+          let commits = [];
+          try {
+            commits = await fetchJSON(
+              `https://api.github.com/repos/${username}/${repo.name}/commits?per_page=20`
+            );
+          } catch (e) {
+            console.warn("Falha ao buscar commits de", repo.name, e.message);
+          }
+
+          galaxies.push({
+            repoName: repo.name,
+            description: repo.description || "Sem descrição",
+            url: repo.html_url,
+            commits: commits.map((commit, index) => ({
+              sha: commit.sha,
+              shortSha: commit.sha.substring(0, 7),
+              message: commit.commit?.message?.split("\n")[0] || "Sem mensagem",
+              author: commit.commit?.author?.name || "Desconhecido",
+              date: commit.commit?.author?.date || "",
+              orbitRadius: 0,
+              angle: (Math.PI * 2 / Math.max(commits.length, 1)) * index,
+              speed: 0.001 + Math.random() * 0.002,
+              size: 1.8 + Math.random() * 2.8,
+              x: 0,
+              y: 0
+            })),
+            x: 0,
+            y: 0,
+            coreRadius: 16 + Math.random() * 10
+          });
+        }
+
+        layoutGalaxies();
+        statusEl.textContent = `Carregado: ${galaxies.length} projetos`;
+        animate();
+      } catch (error) {
+        console.error(error);
+        statusEl.textContent = "Erro ao carregar dados do GitHub";
+      }
+    }
+
+    function layoutGalaxies() {
+      if (!galaxies.length) return;
+
+      const cols = Math.ceil(Math.sqrt(galaxies.length));
+      const rows = Math.ceil(galaxies.length / cols);
+      const cellW = W / cols;
+      const cellH = H / rows;
+
+      galaxies.forEach((galaxy, i) => {
+        const col = i % cols;
+        const row = Math.floor(i / cols);
+
+        galaxy.x = col * cellW + cellW / 2;
+        galaxy.y = row * cellH + cellH / 2;
+
+        const maxOrbit = Math.min(cellW, cellH) * 0.32;
+        const minOrbit = galaxy.coreRadius + 25;
+
+        galaxy.commits.forEach((commit, idx) => {
+          const t = galaxy.commits.length <= 1 ? 0 : idx / (galaxy.commits.length - 1);
+          commit.orbitRadius = minOrbit + t * (maxOrbit - minOrbit);
+        });
+      });
+    }
+
+    function drawBackground() {
+      for (const s of backgroundStars) {
+        ctx.beginPath();
+        ctx.globalAlpha = s.a;
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = "white";
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    function drawGalaxy(galaxy, time) {
+      // órbitas suaves
+      ctx.save();
+      ctx.strokeStyle = "rgba(255,255,255,0.06)";
+      ctx.lineWidth = 1;
+
+      for (const commit of galaxy.commits) {
+        ctx.beginPath();
+        ctx.arc(galaxy.x, galaxy.y, commit.orbitRadius, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // núcleo
+      const pulse = Math.sin(time * 0.002) * 2;
+      const glow = galaxy.coreRadius + 8 + pulse;
+
+      const grad = ctx.createRadialGradient(
+        galaxy.x, galaxy.y, 0,
+        galaxy.x, galaxy.y, glow * 2.4
+      );
+      grad.addColorStop(0, "rgba(255, 230, 140, 0.95)");
+      grad.addColorStop(0.3, "rgba(255, 180, 70, 0.55)");
+      grad.addColorStop(1, "rgba(255, 120, 40, 0)");
+
+      ctx.beginPath();
+      ctx.fillStyle = grad;
+      ctx.arc(galaxy.x, galaxy.y, glow * 2.4, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.fillStyle = "#ffd36b";
+      ctx.arc(galaxy.x, galaxy.y, galaxy.coreRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // nome do projeto
+      ctx.fillStyle = "rgba(255,255,255,0.9)";
+      ctx.font = "bold 14px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText(galaxy.repoName, galaxy.x, galaxy.y - galaxy.coreRadius - 14);
+
+      // commits
+      for (const commit of galaxy.commits) {
+        commit.angle += commit.speed;
+
+        const x = galaxy.x + Math.cos(commit.angle) * commit.orbitRadius;
+        const y = galaxy.y + Math.sin(commit.angle) * commit.orbitRadius;
+
+        commit.x = x;
+        commit.y = y;
+
+        // linha centro -> estrela
+        ctx.beginPath();
+        ctx.moveTo(galaxy.x, galaxy.y);
+        ctx.lineTo(x, y);
+        ctx.strokeStyle = "rgba(255,255,255,0.08)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // brilho da estrela
+        const starGlow = ctx.createRadialGradient(x, y, 0, x, y, commit.size * 4);
+        starGlow.addColorStop(0, "rgba(173,216,255,0.95)");
+        starGlow.addColorStop(0.5, "rgba(120,170,255,0.25)");
+        starGlow.addColorStop(1, "rgba(120,170,255,0)");
+
+        ctx.beginPath();
+        ctx.fillStyle = starGlow;
+        ctx.arc(x, y, commit.size * 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = "#d8ecff";
+        ctx.arc(x, y, commit.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        starsForHover.push({
+          x, y,
+          r: Math.max(6, commit.size + 4),
+          repo: galaxy.repoName,
+          data: commit
+        });
+      }
+    }
+
+    function animate(time = 0) {
+      ctx.clearRect(0, 0, W, H);
+      starsForHover.length = 0;
+
+      drawBackground();
+
+      for (const galaxy of galaxies) {
+        drawGalaxy(galaxy, time);
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    canvas.addEventListener("mousemove", (e) => {
+      const mx = e.clientX;
+      const my = e.clientY;
+
+      let found = null;
+
+      for (const star of starsForHover) {
+        const dx = mx - star.x;
+        const dy = my - star.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist <= star.r) {
+          found = star;
+          break;
+        }
+      }
+
+      if (found) {
+        tooltip.style.display = "block";
+        tooltip.style.left = (mx + 14) + "px";
+        tooltip.style.top = (my + 14) + "px";
+        tooltip.innerHTML = `
+          <strong>Projeto:</strong> ${found.repo}<br>
+          <strong>Commit:</strong> ${found.data.shortSha}<br>
+          <strong>Autor:</strong> ${found.data.author}<br>
+          <strong>Mensagem:</strong> ${found.data.message}<br>
+          <strong>Data:</strong> ${found.data.date ? new Date(found.data.date).toLocaleString("pt-BR") : "N/A"}
+        `;
+      } else {
+        tooltip.style.display = "none";
+      }
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      tooltip.style.display = "none";
+    });
+
+    loadData();
+  </script>
+</body>
+</html>

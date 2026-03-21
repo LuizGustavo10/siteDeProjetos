@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teste de Comunicação - Formulário Interativo</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#121a2b;
+      --muted:#9fb0c9;
+      --text:#e8eefb;
+      --line:rgba(255,255,255,.12);
+      --ok:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --btn:#2b67f6;
+      --btn2:#22304d;
+      --radius:16px;
+      --shadow: 0 12px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 20% 0%, rgba(43,103,246,.20), transparent 60%),
+                  radial-gradient(900px 700px at 100% 10%, rgba(34,197,94,.12), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    .wrap{
+      max-width: 980px;
+      margin: 28px auto;
+      padding: 0 16px 40px;
+    }
+    header{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      justify-content:space-between;
+      margin-bottom:16px;
+    }
+    h1{font-size: 22px; margin:0 0 6px}
+    .sub{color:var(--muted); margin:0; line-height:1.35}
+    .card{
+      background: rgba(18,26,43,.9);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-top: 14px;
+    }
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    .progress{
+      flex:1;
+      min-width: 220px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      height: 12px;
+      overflow:hidden;
+    }
+    .progress > div{
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(43,103,246,1), rgba(34,197,94,1));
+      transition: width .2s ease;
+    }
+    .pill{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      white-space:nowrap;
+    }
+
+    form{ margin-top: 10px; }
+    .q{
+      border-top: 1px dashed rgba(255,255,255,.14);
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+    .q:first-child{ border-top:none; padding-top:0; margin-top:0;}
+    .q-title{
+      margin:0 0 10px;
+      font-weight: 650;
+      line-height:1.35;
+    }
+    .opts{
+      display:grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 10px;
+    }
+    @media (max-width: 760px){
+      .opts{ grid-template-columns: 1fr 1fr; }
+    }
+    .opt{
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      transition: transform .06s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .opt:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
+    .opt input{ margin-top: 3px; }
+    .opt b{ display:block; font-size: 13px; }
+    .opt span{ color: var(--muted); font-size: 12px; display:block; margin-top:2px; }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 16px;
+    }
+    button{
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 11px 14px;
+      cursor:pointer;
+      font-weight: 650;
+      color: white;
+    }
+    .primary{ background: var(--btn); }
+    .secondary{ background: var(--btn2); border-color: var(--line); color: var(--text); }
+    .danger{ background: rgba(239,68,68,.16); border: 1px solid rgba(239,68,68,.35); }
+
+    .note{
+      color: var(--muted);
+      font-size: 13px;
+      line-height:1.45;
+      margin: 10px 0 0;
+    }
+
+    .result{
+      display:none;
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: rgba(255,255,255,.05);
+    }
+    .scoreline{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+    .big{
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .badge{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .badge.good{ border-color: rgba(34,197,94,.45); background: rgba(34,197,94,.12); }
+    .badge.mid{ border-color: rgba(245,158,11,.55); background: rgba(245,158,11,.12); }
+    .badge.low{ border-color: rgba(239,68,68,.55); background: rgba(239,68,68,.12); }
+
+    .tips h3{ margin: 12px 0 8px; font-size: 14px; }
+    .tips ul{ margin: 0; padding-left: 18px; color: var(--muted); }
+    .tips li{ margin: 6px 0; line-height:1.4; }
+
+    .missing{
+      display:none;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(245,158,11,.45);
+      background: rgba(245,158,11,.10);
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .footer{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height:1.45;
+    }
+    .print{
+      margin-left:auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Teste de comunicação</h1>
+        <p class="sub">
+          Responda espontaneamente e honestamente. Não existe resposta “certa” ou “errada”.
+          O objetivo é gerar uma pontuação e indicar oportunidades de melhoria.
+        </p>
+      </div>
+    </header>
+
+    <div class="card">
+      <div class="topbar">
+        <div class="progress" aria-label="Progresso do questionário">
+          <div id="progressBar"></div>
+        </div>
+        <div class="pill" id="progressText">Respondidas: 0/20</div>
+        <div class="pill">Pontuação: Nunca=1 · Raramente=2 · Às vezes=3 · Frequentemente=4 · Sempre=5</div>
+      </div>
+
+      <form id="quiz"></form>
+
+      <div class="missing" id="missingBox"></div>
+
+      <div class="actions">
+        <button type="button" class="primary" id="btnCalcular">Calcular pontuação</button>
+        <button type="button" class="secondary" id="btnLimpar">Limpar respostas</button>
+        <button type="button" class="secondary print" id="btnImprimir">Imprimir / Salvar PDF</button>
+      </div>
+
+      <p class="note">
+        Dica: pense que cada resposta é como um “termômetro” do seu hábito. Quanto mais “Sempre”, mais consistente é o comportamento.
+      </p>
+
+      <div class="result" id="resultBox">
+        <div class="scoreline">
+          <div class="big" id="scoreText">Pontuação: —</div>
+          <div class="badge" id="badge">—</div>
+        </div>
+        <div id="interpretation" style="color: var(--muted); line-height:1.45;"></div>
+
+        <div class="tips">
+          <h3>Dicas de desenvolvimento</h3>
+          <ul>
+            <li><b>Pratique a escuta ativa:</b> foque no que é dito e no sentimento por trás das palavras.</li>
+            <li><b>Expresse ideias com clareza:</b> use exemplos simples e confirme se a pessoa entendeu.</li>
+            <li><b>Desenvolva empatia:</b> tente enxergar a situação pelo ponto de vista do outro.</li>
+            <li><b>Evite interrupções:</b> deixe a pessoa concluir e depois faça perguntas.</li>
+            <li><b>Busque feedback:</b> peça sugestões específicas (“o que eu posso fazer melhor?”).</li>
+          </ul>
+        </div>
+
+        <div class="footer">
+          Interpretação do resultado (total de 20 a 100):
+          <br>• 20–40: deve ser aprimorada
+          <br>• 41–60: moderada
+          <br>• 61–80: sólida
+          <br>• 81–100: excelente
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Opções (rótulo -> pontuação)
+    const OPTIONS = [
+      { label: "Nunca", value: 1, hint: "Quase nunca acontece" },
+      { label: "Raramente", value: 2, hint: "Acontece de vez em quando" },
+      { label: "Às vezes", value: 3, hint: "Oscila conforme a situação" },
+      { label: "Frequentemente", value: 4, hint: "Acontece na maioria das vezes" },
+      { label: "Sempre", value: 5, hint: "É um hábito consistente" },
+    ];
+
+    const QUESTIONS = [
+      "Eu tento entender as emoções por trás das palavras de uma pessoa.",
+      "Eu mantenho a calma e controlo minhas emoções durante conversas difíceis.",
+      "Eu evito julgar ou criticar as pessoas durante uma conversa.",
+      "Eu sou capaz de adaptar minha linguagem e estilo de comunicação conforme necessário.",
+      "Eu compartilho informações importantes com colegas de equipe de forma clara e oportuna.",
+      "Eu reconheço quando preciso pedir esclarecimentos ou informações adicionais.",
+      "Eu mantenho um tom de voz adequado ao ambiente e à situação.",
+      "Eu mostro interesse genuíno nas opiniões e ideias dos outros.",
+      "Eu evito interromper ou falar por cima das pessoas durante as conversas.",
+      "Eu sou capaz de comunicar más notícias ou feedback de melhoria de forma construtiva.",
+      "Eu pratico a escuta ativa, mostrando compreensão e empatia.",
+      "Eu mantenho a confidencialidade das informações compartilhadas durante as conversas.",
+      "Eu uso linguagem corporal positiva e aberta durante as conversas.",
+      "Eu procuro resolver mal-entendidos ou equívocos de forma rápida e eficaz.",
+      "Eu busco oportunidades de feedback para melhorar minha comunicação.",
+      "Eu expresso minhas ideias de forma clara e compreensível.",
+      "Eu respeito as opiniões e perspectivas dos outros, mesmo que sejam diferentes das minhas.",
+      "Eu comunico minhas necessidades e expectativas de forma assertiva.",
+      "Eu mantenho contato visual durante as conversas.",
+      "Eu reconheço quando cometo erros na comunicação e tento corrigi-los."
+    ];
+
+    const quiz = document.getElementById("quiz");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const missingBox = document.getElementById("missingBox");
+
+    const resultBox = document.getElementById("resultBox");
+    const scoreText = document.getElementById("scoreText");
+    const badge = document.getElementById("badge");
+    const interpretation = document.getElementById("interpretation");
+
+    function buildForm() {
+      quiz.innerHTML = "";
+      QUESTIONS.forEach((q, idx) => {
+        const n = idx + 1;
+        const qWrap = document.createElement("div");
+        qWrap.className = "q";
+        qWrap.innerHTML = `
+          <p class="q-title">${n}. ${escapeHtml(q)}</p>
+          <div class="opts" role="radiogroup" aria-label="Pergunta ${n}">
+            ${OPTIONS.map((opt, j) => {
+              const id = `q${n}_o${j}`;
+              return `
+                <label class="opt" for="${id}">
+                  <input id="${id}" type="radio" name="q${n}" value="${opt.value}">
+                  <div>
+                    <b>${opt.label}</b>
+                    <span>${opt.hint}</span>
+                  </div>
+                </label>
+              `;
+            }).join("")}
+          </div>
+        `;
+        quiz.appendChild(qWrap);
+      });
+
+      quiz.addEventListener("change", updateProgress);
+      updateProgress();
+    }
+
+    function updateProgress() {
+      let answered = 0;
+      for (let i = 1; i <= QUESTIONS.length; i++) {
+        const checked = quiz.querySelector(`input[name="q${i}"]:checked`);
+        if (checked) answered++;
+      }
+      const pct = Math.round((answered / QUESTIONS.length) * 100);
+      progressBar.style.width = pct + "%";
+      progressText.textContent = `Respondidas: ${answered}/${QUESTIONS.length}`;
+    }
+
+    function calculate() {
+      const missing = [];
+      let total = 0;
+
+      for (let i = 1; i <= QUESTIONS.length; i++) {
+        const checked = quiz.querySelector(`input[name="q${i}"]:checked`);
+        if (!checked) {
+          missing.push(i);
+        } else {
+          total += Number(checked.value);
+        }
+      }
+
+      if (missing.length) {
+        missingBox.style.display = "block";
+        missingBox.textContent = `Faltam respostas nas perguntas: ${missing.join(", ")}.`;
+        resultBox.style.display = "none";
+        return;
+      }
+
+      missingBox.style.display = "none";
+      renderResult(total);
+    }
+
+    function renderResult(total) {
+      resultBox.style.display = "block";
+      scoreText.textContent = `Pontuação: ${total} / 100`;
+
+      // Interpretação
+      let level = "";
+      let text = "";
+
+      if (total >= 20 && total <= 40) {
+        level = "Precisa aprimorar";
+        badge.className = "badge low";
+        text = "Sua habilidade de comunicação deve ser aprimorada. Procure oportunidades para praticar e desenvolver suas habilidades de comunicação.";
+      } else if (total >= 41 && total <= 60) {
+        level = "Moderada";
+        badge.className = "badge mid";
+        text = "Você possui habilidades de comunicação moderadas. Identifique áreas de melhoria e continue praticando para alcançar um nível mais alto de competência.";
+      } else if (total >= 61 && total <= 80) {
+        level = "Sólida";
+        badge.className = "badge good";
+        text = "Você tem habilidades de comunicação sólidas. Continue mantendo práticas eficazes e buscando maneiras de melhorar ainda mais.";
+      } else if (total >= 81 && total <= 100) {
+        level = "Excelente";
+        badge.className = "badge good";
+        text = "Sua habilidade de comunicação é excelente. Continue aprimorando suas habilidades e compartilhe seus conhecimentos com os outros.";
+      } else {
+        level = "—";
+        badge.className = "badge";
+        text = "Pontuação fora do esperado. Verifique as respostas.";
+      }
+
+      badge.textContent = level;
+      interpretation.textContent = text;
+
+      // Rolagem suave até o resultado (analogia: “painel final do jogo”)
+      resultBox.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function clearAll() {
+      quiz.reset();
+      updateProgress();
+      resultBox.style.display = "none";
+      missingBox.style.display = "none";
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    // Botões
+    document.getElementById("btnCalcular").addEventListener("click", calculate);
+    document.getElementById("btnLimpar").addEventListener("click", clearAll);
+    document.getElementById("btnImprimir").addEventListener("click", () => window.print());
+
+    // Inicializa
+    buildForm();
+  </script>
+</body>
+</html>
