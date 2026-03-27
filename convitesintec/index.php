@@ -1,5 +1,4 @@
 <?php
-// Simple session-based protection against double-submit (optional)
 session_start();
 ?>
 <!DOCTYPE html>
@@ -33,7 +32,6 @@ session_start();
     overflow-x: hidden;
   }
 
-  /* ─── STARS ─────────────────────────────── */
   #stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
   .star {
     position: absolute; border-radius: 50%; background: #fff;
@@ -41,30 +39,168 @@ session_start();
   }
   @keyframes twinkle { from { opacity: .1; } to { opacity: 1; } }
 
-  /* ─── ORBS ───────────────────────────────── */
   .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
   .orb1 { width:420px;height:420px;background:rgba(0,60,180,.32);top:-120px;left:-100px;animation:floatOrb 9s ease-in-out infinite alternate; }
   .orb2 { width:320px;height:320px;background:rgba(255,140,0,.13);bottom:-80px;right:-70px;animation:floatOrb 7s ease-in-out infinite alternate;animation-delay:-3s; }
   .orb3 { width:220px;height:220px;background:rgba(0,120,255,.18);top:40%;right:4%;animation:floatOrb 6s ease-in-out infinite alternate;animation-delay:-5s; }
   @keyframes floatOrb { from{transform:translate(0,0);}to{transform:translate(18px,26px);} }
 
-  /* ─── LAYOUT ─────────────────────────────── */
-  .page {
+  /* ─── MAIN LAYOUT: TWO COLUMNS ─── */
+  .layout {
     position: relative; z-index: 10;
-    max-width: 680px; margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 30px 18px 50px;
-    display: flex; flex-direction: column; align-items: center;
-    min-height: 100vh; justify-content: center;
+    min-height: 100vh;
   }
 
-  /* ─── DOME ───────────────────────────────── */
+  /* ─── LEFT: INVITE ─── */
+  .page {
+    flex: 0 0 620px;
+    max-width: 620px;
+    display: flex; flex-direction: column; align-items: center;
+    padding-top: 20px;
+  }
+
+  /* ─── RIGHT: SCHEDULE ─── */
+  .schedule-panel {
+    flex: 0 0 320px;
+    max-width: 320px;
+    position: sticky;
+    top: 30px;
+  }
+
+  .schedule-title {
+    font-family: 'Orbitron', monospace;
+    font-size: .62rem;
+    letter-spacing: .32em;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .schedule-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,149,0,.4), transparent);
+  }
+
+  .sched-day {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    backdrop-filter: blur(10px);
+    transition: border-color .2s;
+  }
+  .sched-day:hover { border-color: rgba(0,180,255,.32); }
+
+  .sched-day-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(0,60,180,.15);
+    border-bottom: 1px solid var(--glass-border);
+    cursor: pointer;
+  }
+  .sched-day-header.always-open { cursor: default; }
+
+  .sched-day-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-seg { background: #0070ff; box-shadow: 0 0 6px rgba(0,112,255,.7); }
+  .dot-ter { background: #00c8ff; box-shadow: 0 0 6px rgba(0,200,255,.7); }
+  .dot-qua { background: #a855f7; box-shadow: 0 0 6px rgba(168,85,247,.7); }
+  .dot-qui { background: var(--orange); box-shadow: 0 0 6px var(--orange-glow); }
+  .dot-all { background: #22d3ee; box-shadow: 0 0 6px rgba(34,211,238,.7); }
+
+  .sched-day-label {
+    font-family: 'Orbitron', monospace;
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: #fff;
+    flex: 1;
+  }
+  .sched-day-date {
+    font-size: .68rem;
+    color: var(--text-dim);
+  }
+  .sched-chevron {
+    font-size: .6rem;
+    color: var(--text-dim);
+    transition: transform .25s;
+  }
+  .sched-day.open .sched-chevron { transform: rotate(180deg); }
+
+  .sched-items {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+  }
+  .sched-day.open .sched-items { max-height: 500px; }
+
+  .sched-item {
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(100,180,255,.07);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .sched-item:last-child { border-bottom: none; }
+
+  .sched-period {
+    font-family: 'Orbitron', monospace;
+    font-size: .5rem;
+    letter-spacing: .15em;
+    padding: 2px 7px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .period-manha { background:rgba(255,149,0,.15); color:var(--orange); border:1px solid rgba(255,149,0,.3); }
+  .period-tarde { background:rgba(0,112,255,.15); color:#60aeff; border:1px solid rgba(0,112,255,.3); }
+  .period-noite { background:rgba(168,85,247,.15); color:#c084fc; border:1px solid rgba(168,85,247,.3); }
+  .period-semana { background:rgba(34,211,238,.12); color:#22d3ee; border:1px solid rgba(34,211,238,.3); }
+
+  .sched-desc {
+    font-size: .78rem;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  /* continuous badge */
+  .continuous-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(34,211,238,.08);
+    border: 1px solid rgba(34,211,238,.25);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: .78rem;
+    color: rgba(180,240,255,.9);
+    line-height: 1.5;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .continuous-badge .cb-icon { font-size: .85rem; flex-shrink:0; }
+
+  /* ─── DOME ─── */
   .dome-wrap {
     width: 115px; height: 68px; margin-bottom: 14px;
     animation: floatDome 4s ease-in-out infinite alternate;
   }
   @keyframes floatDome { from{transform:translateY(0);}to{transform:translateY(-9px);} }
 
-  /* ─── BRAND ──────────────────────────────── */
   .brand {
     font-family: 'Orbitron', monospace;
     font-size: 2.3rem; font-weight: 900; letter-spacing: .15em;
@@ -88,7 +224,6 @@ session_start();
     text-align: center; margin-bottom: 16px;
   }
 
-  /* ─── GLASS BOXES ────────────────────────── */
   .glass {
     background: var(--glass); border: 1px solid var(--glass-border);
     border-radius: 16px; padding: 22px 26px; width: 100%;
@@ -97,7 +232,6 @@ session_start();
   }
   .intro { font-size: .95rem; line-height: 1.7; text-align: center; }
 
-  /* ─── INFO ROW ───────────────────────────── */
   .info-row { display:flex; gap:12px; width:100%; margin-bottom:14px; }
   .info-card {
     flex: 1; background: rgba(255,255,255,.03);
@@ -111,7 +245,6 @@ session_start();
   .info-value { color:#fff; font-size:.9rem; font-weight:700; }
   .info-sub { color: var(--text-dim); font-size:.76rem; margin-top:2px; }
 
-  /* ─── FORMAT BOX ─────────────────────────── */
   .format-box {
     width:100%; background: rgba(0,80,200,.1);
     border: 1px solid rgba(0,120,255,.22); border-radius:12px;
@@ -127,7 +260,6 @@ session_start();
   .deadline { width:100%; text-align:center; font-size:.88rem; color:var(--text-dim); margin-bottom:26px; }
   .deadline strong { color:var(--orange); }
 
-  /* ─── NAME INPUT ─────────────────────────── */
   .rsvp-box { width:100%; }
   .rsvp-question {
     font-family: 'Orbitron', monospace; font-size:.88rem;
@@ -160,7 +292,6 @@ session_start();
   }
   .input-error.show { opacity:1; }
 
-  /* ─── BUTTONS ────────────────────────────── */
   .btn-row { display:flex; gap:14px; justify-content:center; width:100%; }
 
   .btn {
@@ -187,11 +318,9 @@ session_start();
   .btn-no {
     background: rgba(255,255,255,.055); color:rgba(180,210,255,.7);
     border:1px solid rgba(100,150,255,.25);
-    /* position fixed when escaping */
   }
   .btn-no:hover { color:rgba(255,100,100,.9); border-color:rgba(255,100,100,.4); }
 
-  /* ─── DECLINED ───────────────────────────── */
   .declined-msg {
     display:none; flex-direction:column; align-items:center;
     gap:12px; padding:20px; text-align:center;
@@ -200,7 +329,6 @@ session_start();
   .declined-text { font-size:.95rem; line-height:1.7; }
   .declined-text strong { color:#fff; }
 
-  /* ─── CELEBRATION OVERLAY ────────────────── */
   #celebration {
     display:none; position:fixed; inset:0; z-index:1000;
     background:rgba(2,11,26,.93); backdrop-filter:blur(8px);
@@ -217,33 +345,14 @@ session_start();
     to{transform:scale(1.08);filter:drop-shadow(0 0 30px rgba(0,200,255,.95));}
   }
 
-  .celebrate-name {
-    font-family:'Orbitron',monospace; font-size:1rem; color:var(--cyan);
-    letter-spacing:.1em; margin-bottom:4px;
-    animation: slideUp .5s ease both;
-  }
-  .celebrate-title {
-    font-family:'Orbitron',monospace; font-size:1.9rem; font-weight:900;
-    color:#fff; text-shadow:0 0 30px rgba(0,180,255,.85); margin-bottom:8px;
-    animation:slideUp .6s .1s ease both;
-  }
-  .celebrate-sub {
-    font-size:1rem; color:rgba(180,230,255,.9); line-height:1.75;
-    max-width:400px; animation:slideUp .6s .2s ease both; margin-bottom:22px;
-  }
-  .celebrate-date {
-    font-family:'Orbitron',monospace; font-size:1.05rem;
-    color:var(--orange); text-shadow:0 0 14px var(--orange-glow);
-    animation:slideUp .6s .3s ease both; margin-bottom:28px;
-  }
+  .celebrate-name { font-family:'Orbitron',monospace; font-size:1rem; color:var(--cyan); letter-spacing:.1em; margin-bottom:4px; animation:slideUp .5s ease both; }
+  .celebrate-title { font-family:'Orbitron',monospace; font-size:1.9rem; font-weight:900; color:#fff; text-shadow:0 0 30px rgba(0,180,255,.85); margin-bottom:8px; animation:slideUp .6s .1s ease both; }
+  .celebrate-sub { font-size:1rem; color:rgba(180,230,255,.9); line-height:1.75; max-width:400px; animation:slideUp .6s .2s ease both; margin-bottom:22px; }
+  .celebrate-date { font-family:'Orbitron',monospace; font-size:1.05rem; color:var(--orange); text-shadow:0 0 14px var(--orange-glow); animation:slideUp .6s .3s ease both; margin-bottom:28px; }
   @keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
 
   .rings { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none; }
-  .ring {
-    position:absolute; border-radius:50%; border:1px solid rgba(0,180,255,.4);
-    width:var(--s); height:var(--s);
-    animation:expandRing var(--t) ease-out infinite;
-  }
+  .ring { position:absolute; border-radius:50%; border:1px solid rgba(0,180,255,.4); width:var(--s); height:var(--s); animation:expandRing var(--t) ease-out infinite; }
   @keyframes expandRing{0%{transform:scale(0);opacity:.8;}100%{transform:scale(4);opacity:0;}}
 
   .btn-close {
@@ -257,7 +366,6 @@ session_start();
   }
   .btn-close:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,120,255,.8);}
 
-  /* ─── TOAST ──────────────────────────────── */
   #toast {
     position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(20px);
     background:rgba(20,60,20,.9); border:1px solid rgba(0,200,80,.4);
@@ -269,7 +377,6 @@ session_start();
   #toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
   #toast.error-toast { background:rgba(60,10,10,.9); border-color:rgba(255,80,80,.4); color:#ff9090; }
 
-  /* ─── CONFIRMED STATE ────────────────────── */
   .confirmed-badge {
     display:inline-flex; align-items:center; gap:8px;
     background:linear-gradient(135deg,rgba(0,180,80,.2),rgba(0,100,60,.1));
@@ -279,21 +386,31 @@ session_start();
     letter-spacing:.1em;
   }
 
-  /* ─── ESCAPE ANIMATION for btn-no ───────── */
   .btn-no.is-escaping {
     position: fixed !important;
     transition: left .35s cubic-bezier(.22,.61,.36,1), top .35s cubic-bezier(.22,.61,.36,1) !important;
     z-index: 500;
   }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .layout {
+      flex-direction: column;
+      align-items: center;
+    }
+    .page { flex: none; max-width: 620px; width: 100%; }
+    .schedule-panel {
+      flex: none; max-width: 620px; width: 100%;
+      position: static;
+    }
+  }
 </style>
 </head>
 <body>
 
-<!-- Stars & orbs -->
 <div id="stars"></div>
 <div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
 
-<!-- Confetti & celebration -->
 <canvas class="confetti-canvas" id="confettiCanvas"></canvas>
 
 <div id="celebration">
@@ -306,83 +423,170 @@ session_start();
   <div class="celebrate-name" id="celebrateName"></div>
   <div class="celebrate-title">✦ Confirmado! ✦</div>
   <div class="celebrate-sub">Sua presença foi registrada com sucesso.<br>Nos vemos no <strong>SINTEC 2.0</strong>!</div>
-  <div class="celebrate-date">📅 22 de Maio &nbsp;·&nbsp; Tarde &amp; Noite</div>
+  <div class="celebrate-date">📅 19 a 23 de Outubro &nbsp;·&nbsp; Semana Toda</div>
   <button class="btn-close" onclick="closeCelebration()">Incrível! ✓</button>
 </div>
 
 <div id="toast"></div>
 
-<!-- MAIN PAGE -->
-<div class="page">
+<!-- TWO-COLUMN LAYOUT -->
+<div class="layout">
 
-  <!-- Logo -->
-  <div class="dome-wrap"><?= domeSVG('') ?></div>
-  <div class="brand">SIN<span style="color:#fff">TEC</span></div>
-  <div class="brand-version">2.0</div>
-  <div class="tagline">Semana da Tecnologia</div>
+  <!-- ─── LEFT: INVITE ─── -->
+  <div class="page">
 
-  <h1>Convite Especial</h1>
+    <div class="dome-wrap"><?= domeSVG('') ?></div>
+    <div class="brand">SIN<span style="color:#fff">TEC</span></div>
+    <div class="brand-version">2.0</div>
+    <div class="tagline">Semana da Tecnologia</div>
 
-  <div class="glass">
-    <p class="intro">Temos o prazer de convidar você para a <strong style="color:#fff">SINTEC 2.0</strong>, um evento dedicado à apresentação de projetos, ideias e tecnologias desenvolvidas pelos nossos instrutores e alunos.</p>
-  </div>
+    <h1>Convite Especial</h1>
 
-  <div class="info-row">
-    <div class="info-card">
-      <div class="info-label">📅 Data</div>
-      <div class="info-value">22 de Maio</div>
-      <div class="info-sub">Quinta-feira</div>
-    </div>
-    <div class="info-card">
-      <div class="info-label">🕐 Horário</div>
-      <div class="info-value">Tarde &amp; Noite</div>
-      <div class="info-sub">Múltiplos períodos</div>
-    </div>
-  </div>
-
-  <div class="format-box">
-    <div class="format-title">⚙ Formato do Evento</div>
-    <div class="format-text">
-      Apresentações em <strong>formato rotativo</strong> — 20 minutos cada, repetidas ao longo do evento para que todos possam acompanhar todos os projetos.<br><br>
-      <strong>Apresentadores:</strong> Instrutores da instituição
-    </div>
-  </div>
-
-  <div class="deadline"><strong>Confirmação até 31 de março.</strong> Garanta sua participação.</div>
-
-  <!-- RSVP -->
-  <div class="rsvp-box" id="rsvpSection">
-    <div class="rsvp-question">Confirme sua presença abaixo 👇</div>
-
-    <div class="input-wrap">
-      <label for="guestName">✦ Seu nome completo</label>
-      <input
-        type="text"
-        id="guestName"
-        class="name-input"
-        placeholder="Digite seu nome..."
-        maxlength="80"
-        autocomplete="off"
-      />
-      <span class="input-error" id="nameError">Por favor, informe seu nome antes de confirmar.</span>
+    <div class="glass">
+      <p class="intro">Temos o prazer de convidar você para a <strong style="color:#fff">SINTEC 2.0</strong>, um evento dedicado à apresentação de projetos, ideias e tecnologias desenvolvidas pelos nossos instrutores e alunos.</p>
     </div>
 
-    <div class="btn-row">
-      <button class="btn btn-yes" id="btnYes" onclick="confirmPresence()">✓ Confirmar presença</button>
-      <button class="btn btn-no" id="btnNo" onclick="tryDecline(event)">✕ Não posso ir</button>
+    <div class="info-row">
+      <div class="info-card">
+        <div class="info-label">📅 Período</div>
+        <div class="info-value">19 – 23 Out</div>
+        <div class="info-sub">Semana completa</div>
+      </div>
+      <div class="info-card">
+        <div class="info-label">🕐 Horário</div>
+        <div class="info-value">Tarde &amp; Noite</div>
+        <div class="info-sub">Múltiplos períodos</div>
+      </div>
     </div>
-  </div>
 
-  <div class="declined-msg" id="declinedMsg">
-    <div class="declined-icon">😔</div>
-    <div class="declined-text">Sentiremos sua falta!<br><strong>Esperamos te ver em futuros eventos.</strong></div>
-    <button class="btn btn-yes" style="max-width:230px;margin-top:10px;" onclick="resetRSVP()">↩ Mudar resposta</button>
-  </div>
+    <div class="format-box">
+      <div class="format-title">⚙ Formato do Evento</div>
+      <div class="format-text">
+        Apresentações em <strong>formato rotativo</strong> — 20 minutos cada, repetidas ao longo do evento para que todos possam acompanhar todos os projetos.<br><br>
+        <strong>Apresentadores:</strong> Instrutores da instituição
+      </div>
+    </div>
 
-</div><!-- /page -->
+    <div class="deadline"><strong>Confirmação até 31 de março.</strong> Garanta sua participação.</div>
+
+    <div class="rsvp-box" id="rsvpSection">
+      <div class="rsvp-question">Confirme sua presença abaixo 👇</div>
+
+      <div class="input-wrap">
+        <label for="guestName">✦ Seu nome completo</label>
+        <input
+          type="text"
+          id="guestName"
+          class="name-input"
+          placeholder="Digite seu nome..."
+          maxlength="80"
+          autocomplete="off"
+        />
+        <span class="input-error" id="nameError">Por favor, informe seu nome antes de confirmar.</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-yes" id="btnYes" onclick="confirmPresence()">✓ Confirmar presença</button>
+        <button class="btn btn-no" id="btnNo" onclick="tryDecline(event)">✕ Não posso ir</button>
+      </div>
+    </div>
+
+    <div class="declined-msg" id="declinedMsg">
+      <div class="declined-icon">😔</div>
+      <div class="declined-text">Sentiremos sua falta!<br><strong>Esperamos te ver em futuros eventos.</strong></div>
+      <button class="btn btn-yes" style="max-width:230px;margin-top:10px;" onclick="resetRSVP()">↩ Mudar resposta</button>
+    </div>
+
+  </div><!-- /page -->
+
+  <!-- ─── RIGHT: SCHEDULE ─── -->
+  <div class="schedule-panel">
+
+    <div class="schedule-title">📋 Programação</div>
+
+    <!-- Continuous badge -->
+    <div class="continuous-badge">
+      <span class="cb-icon">🖥️</span>
+      <span><strong style="color:#fff">Durante toda a semana</strong> — Museu da Tecnologia: exposição, linha do tempo e QR Codes interativos.</span>
+    </div>
+
+    <!-- Segunda -->
+    <div class="sched-day open" id="day-seg">
+      <div class="sched-day-header" onclick="toggleDay('day-seg')">
+        <div class="sched-day-dot dot-seg"></div>
+        <div class="sched-day-label">Segunda-feira</div>
+        <div class="sched-day-date">19/10</div>
+        <div class="sched-chevron">▼</div>
+      </div>
+      <div class="sched-items">
+        <div class="sched-item">
+          <div class="sched-period period-manha">ABERTURA</div>
+          <div class="sched-desc">Abertura oficial, apresentação cultural e minipalestras com profissionais de TI.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Terça -->
+    <div class="sched-day" id="day-ter">
+      <div class="sched-day-header" onclick="toggleDay('day-ter')">
+        <div class="sched-day-dot dot-ter"></div>
+        <div class="sched-day-label">Terça-feira</div>
+        <div class="sched-day-date">20/10</div>
+        <div class="sched-chevron">▼</div>
+      </div>
+      <div class="sched-items">
+        <div class="sched-item">
+          <div class="sched-period period-tarde">TARDE</div>
+          <div class="sched-desc">Maratona de Informática — Passa ou Repassa em competição em grupos.</div>
+        </div>
+        <div class="sched-item">
+          <div class="sched-period period-noite">NOITE</div>
+          <div class="sched-desc">Ideathon — Maratona de ideias: criação de soluções, pitch e premiação.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quarta -->
+    <div class="sched-day" id="day-qua">
+      <div class="sched-day-header" onclick="toggleDay('day-qua')">
+        <div class="sched-day-dot dot-qua"></div>
+        <div class="sched-day-label">Quarta-feira</div>
+        <div class="sched-day-date">21/10</div>
+        <div class="sched-chevron">▼</div>
+      </div>
+      <div class="sched-items">
+        <div class="sched-item">
+          <div class="sched-period period-tarde">TARDE</div>
+          <div class="sched-desc">Campeonato de jogos eletrônicos e de tabuleiro.</div>
+        </div>
+        <div class="sched-item">
+          <div class="sched-period period-noite">NOITE</div>
+          <div class="sched-desc">Painel com profissionais de mercado, debate e networking.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quinta -->
+    <div class="sched-day" id="day-qui">
+      <div class="sched-day-header" onclick="toggleDay('day-qui')">
+        <div class="sched-day-dot dot-qui"></div>
+        <div class="sched-day-label">Quinta-feira</div>
+        <div class="sched-day-date">Último dia</div>
+        <div class="sched-chevron">▼</div>
+      </div>
+      <div class="sched-items">
+        <div class="sched-item">
+          <div class="sched-period period-tarde">DIA TODO</div>
+          <div class="sched-desc">Feira de tecnologia, exposição de projetos e oficinas temáticas.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /schedule-panel -->
+
+</div><!-- /layout -->
 
 <script>
-// ─── STARS ─────────────────────────────────────────────────────────────────
 (function(){
   const c = document.getElementById('stars');
   for(let i=0;i<130;i++){
@@ -394,7 +598,11 @@ session_start();
   }
 })();
 
-// ─── CONFETTI ───────────────────────────────────────────────────────────────
+function toggleDay(id){
+  const el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+
 const canvas = document.getElementById('confettiCanvas');
 const ctx = canvas.getContext('2d');
 let pieces = [], raf;
@@ -427,7 +635,6 @@ function drawConfetti(){
   else ctx.clearRect(0,0,canvas.width,canvas.height);
 }
 
-// ─── TOAST ──────────────────────────────────────────────────────────────────
 let toastTimer;
 function showToast(msg,isError=false){
   const t=document.getElementById('toast');
@@ -437,30 +644,24 @@ function showToast(msg,isError=false){
   toastTimer=setTimeout(()=>t.className='',3000);
 }
 
-// ─── VALIDATE ───────────────────────────────────────────────────────────────
 function getNameValue(){ return document.getElementById('guestName').value.trim(); }
 function showNameError(show){
   document.getElementById('nameError').classList.toggle('show',show);
   document.getElementById('guestName').style.borderColor = show ? '#ff6060' : '';
 }
 
-// ─── CONFIRM ────────────────────────────────────────────────────────────────
 async function confirmPresence(){
   const name = getNameValue();
   if(!name){ showNameError(true); document.getElementById('guestName').focus(); return; }
   showNameError(false);
-
   const btn = document.getElementById('btnYes');
   btn.disabled=true; btn.textContent='Enviando...';
-
   try {
     const fd = new FormData();
     fd.append('action','confirm');
     fd.append('name', name);
-
     const res = await fetch('rsvp.php', { method:'POST', body:fd });
     const data = await res.json();
-
     if(data.success){
       document.getElementById('celebrateName').textContent = '✨ Olá, ' + name + '!';
       spawnConfetti(); spawnConfetti(); drawConfetti();
@@ -475,25 +676,21 @@ async function confirmPresence(){
   }
 }
 
-// ─── CLOSE CELEBRATION ───────────────────────────────────────────────────────
 function closeCelebration(){
   document.getElementById('celebration').classList.remove('active');
   cancelAnimationFrame(raf); ctx.clearRect(0,0,canvas.width,canvas.height); pieces=[];
-  // Replace RSVP with confirmed badge
   const section = document.getElementById('rsvpSection');
   section.innerHTML = `<div style="display:flex;justify-content:center;">
-    <div class="confirmed-badge">✓ Presença Confirmada &nbsp;·&nbsp; Até 22 de Maio!</div>
+    <div class="confirmed-badge">✓ Presença Confirmada &nbsp;·&nbsp; Até 19–23 de Outubro!</div>
   </div>`;
 }
 
-// ─── DECLINE (ESCAPE BUTTON) ─────────────────────────────────────────────────
 let declineClicks = 0;
 let escaping = false;
 
 function tryDecline(e){
   declineClicks++;
   if(declineClicks >= 5){
-    // After 5 "escapes", give up and show declined message
     stopEscaping();
     declineConfirmed();
     return;
@@ -505,41 +702,24 @@ function escapeButton(e){
   const btn = document.getElementById('btnNo');
   if(escaping) return;
   escaping = true;
-
   const margin = 20;
   const bw = btn.offsetWidth, bh = btn.offsetHeight;
   const maxX = window.innerWidth - bw - margin;
   const maxY = window.innerHeight - bh - margin;
-
-  // Teleport to fixed positioning at current position
   const rect = btn.getBoundingClientRect();
   btn.classList.add('is-escaping');
   btn.style.left = rect.left + 'px';
   btn.style.top  = rect.top  + 'px';
   btn.style.width  = bw + 'px';
   btn.style.height = bh + 'px';
-
-  // Force reflow then move
   btn.getBoundingClientRect();
-
   const newX = Math.min(Math.max(margin, Math.random() * maxX), maxX);
   const newY = Math.min(Math.max(margin, Math.random() * maxY), maxY);
-
   btn.style.left = newX + 'px';
   btn.style.top  = newY + 'px';
-
   setTimeout(()=>{ escaping = false; }, 380);
-
-  // Show teasing messages
-  const msgs = [
-    'Ei, não foge não! 😏',
-    'Tenta pegar! 😂',
-    'Quase... 🤭',
-    'Mais um clique e desisto! 😅',
-  ];
-  if(declineClicks <= msgs.length){
-    showToast(msgs[declineClicks-1]);
-  }
+  const msgs = ['Ei, não foge não! 😏','Tenta pegar! 😂','Quase... 🤭','Mais um clique e desisto! 😅'];
+  if(declineClicks <= msgs.length){ showToast(msgs[declineClicks-1]); }
 }
 
 function stopEscaping(){
@@ -551,7 +731,6 @@ function stopEscaping(){
 
 async function declineConfirmed(){
   const name = getNameValue();
-  // Send decline to backend (optional, best-effort)
   if(name){
     try {
       const fd=new FormData(); fd.append('action','decline'); fd.append('name',name);
@@ -570,20 +749,30 @@ function resetRSVP(){
   btn.disabled=false; btn.textContent='✓ Confirmar presença';
 }
 
-// Input live validation
 document.getElementById('guestName').addEventListener('input', function(){
   if(this.value.trim()) showNameError(false);
 });
 document.getElementById('guestName').addEventListener('keydown', function(e){
   if(e.key==='Enter') confirmPresence();
 });
+
+function alignSchedule(){
+  const panel = document.querySelector('.schedule-panel');
+  const glass = document.querySelector('.glass');
+  if(!panel || !glass) return;
+  if(window.innerWidth <= 960){ panel.style.paddingTop = ''; return; }
+  const layoutTop = document.querySelector('.layout').getBoundingClientRect().top + window.scrollY;
+  const glassTop  = glass.getBoundingClientRect().top  + window.scrollY;
+  panel.style.paddingTop = (glassTop - layoutTop) + 'px';
+}
+window.addEventListener('load', alignSchedule);
+window.addEventListener('resize', alignSchedule);
 </script>
 
 </body>
 </html>
 
 <?php
-// ─── PHP HELPER ───────────────────────────────────────────────────────────────
 function domeSVG(string $class): string {
   $c = $class ? " class=\"$class\"" : '';
   return <<<SVG
